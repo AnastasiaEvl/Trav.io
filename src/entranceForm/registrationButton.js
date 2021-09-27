@@ -1,11 +1,11 @@
-import React from 'react'
-import handleClick from './handleClick'
+// import React from 'react'
+// import handleClick from './handleClick'
 
 
-function RegistrationButton (){
-    return (
-        <button onClick={handleClick}>Зарегистрироваться</button>
-    )
-}
+// function RegistrationButton (){
+//     return (
+//         <button onClick={handleClick}>Зарегистрироваться</button>
+//     )
+// }
 
-export default RegistrationButton
+// export default RegistrationButton
