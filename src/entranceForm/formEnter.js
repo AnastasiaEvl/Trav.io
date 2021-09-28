@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 const styles = {
   table: {
@@ -16,12 +18,17 @@ const styles = {
   const [email, setEmail] = useState(false)
   const [password, setPassword] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState(false)
-  const [registration, setRegistration] = useState()
-
+  
   console.log(email)
   console.log(password)
   console.log(confirmPassword)
-  console.log(registration)
+ 
+  function postData(){
+     axios.post('http//server', {email, password})
+     .then(data=>console.log(data))
+     .catch(error=>console.log(error))
+    
+  }
 
   return (
     <div>
@@ -57,7 +64,7 @@ const styles = {
             </tr>
             <tr>
               <td>
-                <input type="submit" value="Регистрация"  disabled = {!(password === confirmPassword)} onChange={(data)=>setRegistration(data.target.value)}/>
+                <Link to="/signUp"><input type="submit" value="Регистрация"  disabled = {!(password === confirmPassword)} onClick={postData}/></Link>
               </td>
             </tr>
             </tbody>
@@ -68,4 +75,5 @@ const styles = {
   );
 }
 
-export default FormEnter;
+export default FormEnter
+
