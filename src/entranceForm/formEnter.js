@@ -30,6 +30,7 @@ const styles = {
         <h3>Страница регистрации</h3>
         <form>
           <table style={styles.table}>
+            <tbody>
             <tr>
               <td style={styles.td}>
                 <b>Email</b>
@@ -54,10 +55,14 @@ const styles = {
                 <input type="password" id="confirmPassword" required onChange={(data)=>setConfirmPassword(data.target.value)}/>
               </td>
             </tr>
+            <tr>
+              <td>
+                <input type="submit" value="Регистрация"  disabled = {!(password === confirmPassword)} onChange={(data)=>setRegistration(data.target.value)}/>
+              </td>
+            </tr>
+            </tbody>
           </table>
         </form>
-       
-        <button id="submit" disabled = {email && !(password === confirmPassword)} onChange={(data)=>setRegistration(data.target.value)}>Зарегистрироваться</button>
       </div>
     </div>
   );
