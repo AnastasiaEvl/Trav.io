@@ -7,7 +7,7 @@ import SingUp from './entranceForm/SignUp/SignUp'
 function App()  {
   return (
     <Router>
-    <FormEnter/>
+    <Layout/>
     </Router>
     )
 }
