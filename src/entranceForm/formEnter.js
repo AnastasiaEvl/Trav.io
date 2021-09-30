@@ -28,6 +28,7 @@ const styles = {
   const [errorEmail, setErrorEmail]=useState('Введите e-mail')
   const [errorPassword, setErrorPasword]=useState('Введите пароль')
   const [errorConfirmPassword, setErrorConfirmPassword]=useState('Пароли не совпадают')
+  const [checked, setChecked] = useState(false);
   
 
 
@@ -133,6 +134,15 @@ const equalsPassword = (data) => {
                 {(emptyConfirmPassword && errorConfirmPassword) && <div style={{color:'red'}}>{errorConfirmPassword}</div>}
                 <input value={confirmPassword} type ="password" onBlur={data =>blurHandler(data)} required onChange={(data)=>setConfirmPassword(data.target.value), (data) => equalsPassword(data)}/>
               </td>
+              </tr>
+              <tr>
+              <td>
+              <Link to="/CDA"><p style={{fontSize: '10pt'}}>Я подтверждаю, что ознакомился с правилами пользования Сервисом и Политикой конфиденциальности</p></Link>
+              </td>
+              <td>
+              <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
+              </td>
+              
             </tr>
                 
             </tbody>
