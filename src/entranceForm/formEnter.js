@@ -1,6 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {ReactElement, useState, useEffect} from "react";
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import Modal from './Modal/Modal'
+
+
 
 const styles = {
   table: {
@@ -29,12 +32,15 @@ const styles = {
   const [errorPassword, setErrorPasword]=useState('Введите пароль')
   const [errorConfirmPassword, setErrorConfirmPassword]=useState('Пароли не совпадают')
   const [checked, setChecked] = useState(false);
+  const [modalActive, setModalActive]= useState(true);
+
   
 
 
   function buttonChange () {
+    console.log(checked)
 
-    if (errorEmail || errorPassword || errorConfirmPassword){
+    if (errorEmail || errorPassword || errorConfirmPassword || !checked){
       return false;
     }else {
       return true;
@@ -50,7 +56,7 @@ const styles = {
       setErrorEmail( 'Некорректный e-mail')
     } else {
       setErrorEmail('')
-      
+      cheackEmail();
     }
   }
 
@@ -97,9 +103,14 @@ const equalsPassword = (data) => {
      axios.post('http//server', {email, password})
      .then(data=>console.log(data))
      .catch(error=>console.log(error))
-    
   }
 
+
+  function cheackEmail(){
+    axios.post('http//cheackEmail', {email})
+    .then(data=>console.log(data))
+    .catch(error=>console.log(error))
+  }
   return (
     <div>
       <div className="wrapper">
@@ -137,10 +148,44 @@ const equalsPassword = (data) => {
               </tr>
               <tr>
               <td>
-              <Link to="/CDA"><p style={{fontSize: '10pt'}}>Я подтверждаю, что ознакомился с правилами пользования Сервисом и Политикой конфиденциальности</p></Link>
+              <p style={{fontSize: '10pt', textDecoration:'underline'}} onClick={() => setModalActive(true)}>Я подтверждаю, что ознакомился с правилами пользования Сервисом и Политикой конфиденциальности</p>
               </td>
               <td>
               <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
+              <Modal active = {modalActive} setActive={setModalActive}>
+                <p style={{fontSize: '18pt', textAlign:'justify'}}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+                  Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+                  natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                  Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat 
+                  massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
+                  In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis 
+                  pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend 
+                  tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus 
+                  in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. 
+                  Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. 
+                  Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet
+                   adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+                    Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. 
+                    Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla 
+                    mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, 
+                    augue velit cursus nunc,
+                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+                  natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                  Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat 
+                  massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
+                  In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis 
+                  pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend 
+                  tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus 
+                  in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. 
+                  Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. 
+                  Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet
+                   adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+                    Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. 
+                    Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla 
+                    mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, 
+                    augue velit cursus nunc,</p>
+                    <button style={{height:'50px', width: '150px', fontSize:'20pt', float: 'right'}}>Закрыть</button>
+              </Modal>
               </td>
               
             </tr>
