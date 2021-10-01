@@ -32,14 +32,15 @@ const styles = {
   const [errorPassword, setErrorPasword]=useState('Введите пароль')
   const [errorConfirmPassword, setErrorConfirmPassword]=useState('Пароли не совпадают')
   const [checked, setChecked] = useState(false);
-  const [modalActive, setModalActive]= useState(true);
+  const [modalActive, setModalActive]= useState(false);
 
+  var clearEmail = false;
   
 
 
   function buttonChange () {
     console.log(checked)
-
+    console.log(clearEmail)
     if (errorEmail || errorPassword || errorConfirmPassword || !checked){
       return false;
     }else {
@@ -67,7 +68,7 @@ const styles = {
       setErrorPasword('Пароль не соответствует требованиям')
     }else {
       setErrorPasword('')
- 
+      cheackEmail();
     }
   }
 
@@ -94,11 +95,10 @@ const equalsPassword = (data) => {
     }
   }
   
-    
-  // console.log(email)
-  // console.log(password)
-  // console.log(confirmPassword)
  
+
+
+
   function postData(){
      axios.post('http//server', {email, password})
      .then(data=>console.log(data))
@@ -108,9 +108,19 @@ const equalsPassword = (data) => {
 
   function cheackEmail(){
     axios.post('http//cheackEmail', {email})
-    .then(data=>console.log(data))
+    .then(data=>  
+      {if(data.email === email){
+        alert ('такой email уже есть');
+      }else {
+        clearEmail = true;
+      }
+    })
     .catch(error=>console.log(error))
   }
+
+
+
+  
   return (
     <div>
       <div className="wrapper">
