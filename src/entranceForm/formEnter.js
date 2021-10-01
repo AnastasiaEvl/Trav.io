@@ -36,11 +36,7 @@ const styles = {
 
   var clearEmail = false;
   
-
-
   function buttonChange () {
-    console.log(checked)
-    console.log(clearEmail)
     if (errorEmail || errorPassword || errorConfirmPassword || !checked){
       return false;
     }else {
@@ -48,8 +44,6 @@ const styles = {
     }
   }
     
-  
-
   const emailHandler = (data) => {
     setEmail(data.target.value)
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -68,7 +62,6 @@ const styles = {
       setErrorPasword('Пароль не соответствует требованиям')
     }else {
       setErrorPasword('')
-      cheackEmail();
     }
   }
 
@@ -95,16 +88,11 @@ const equalsPassword = (data) => {
     }
   }
   
- 
-
-
-
   function postData(){
-     axios.post('http//server', {email, password})
+     axios.post('http//server', {email, password, checked})
      .then(data=>console.log(data))
      .catch(error=>console.log(error))
   }
-
 
   function cheackEmail(){
     axios.post('http//cheackEmail', {email})
@@ -119,8 +107,6 @@ const equalsPassword = (data) => {
   }
 
 
-
-  
   return (
     <div>
       <div className="wrapper">
@@ -197,9 +183,7 @@ const equalsPassword = (data) => {
                     <button style={{height:'50px', width: '150px', fontSize:'20pt', float: 'right'}}>Закрыть</button>
               </Modal>
               </td>
-              
             </tr>
-                
             </tbody>
           </table>
         </form>
