@@ -7,10 +7,10 @@ function ForOrganization() {
   const [orgForm, setOrgForm] = useState();
   const [orgName, setOrgName] = useState();
   const [orgAct, setOrgAct] = useState();
-  const [UNP, setUNP] = useState();
+  const [payerNum, setPayerNum] = useState();
   const [adress, setAdress] = useState();
-  const [manufacturer, setManufacturer] = useState;
-  const [supplier, setSupplier] = useState;
+  const [manufacturer, setManufacturer] = useState();
+  const [supplier, setSupplier] = useState();
 
   function mainPage() {
     window.location = "/main";
@@ -83,8 +83,8 @@ function ForOrganization() {
               <td>
                 <input
                   required
-                  value={UNP}
-                  onChange={(data) => setUNP(data.target.value)}
+                  value={payerNum}
+                  onChange={(data) => setPayerNum(data.target.value)}
                 ></input>
               </td>
             </tr>
@@ -107,8 +107,8 @@ function ForOrganization() {
       <button
         className="next"
         type="submit"
-        disabled={!buttonChange()}
-        onclick={postData}
+        // disabled={!buttonChange()}
+        // onclick={postData}
       >
         <p>Дальше</p>
       </button>

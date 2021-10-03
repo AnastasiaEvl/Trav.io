@@ -1,8 +1,10 @@
 import React from "react";
+import "./Modal.css";
 
 function TextCDA() {
   return (
-    <p style={{ fontSize: "18pt", textAlign: "justify" }}>
+    <p className="textCDA">
+      <h1 className="agreementTitle">Соглашение о конфиденциальности</h1>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
