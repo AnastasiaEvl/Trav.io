@@ -1,22 +1,22 @@
 import React from "react";
 import {
-    BrowserRouter, 
-    BrowserRouter as Router, 
-    Switch, 
-    Route,} from 'react-router-dom';
+  BrowserRouter,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import FormEnter from "./formEnter";
-import SignUp from "./SignUp/SignUp"
+import ForOrganization from "./PersonalArea/ForOrganization";
+import SignUp from "./SignUp/SignUp";
+import MainPage from "../MainPage/MainPage";
 
-function Layout(){
-    return(
-        <BrowserRouter>
-        
-        <Route exact path="/" render={()=><FormEnter/>}/>
-        <Route path="/signUp" render={()=><SignUp/>}/>
-        
-
-        </BrowserRouter>
-
-    )
+function Layout() {
+  return (
+    <BrowserRouter>
+      <Route exact path="/" render={() => <FormEnter />} />
+      <Route path="/signUp" render={() => <ForOrganization />} />
+      <Route path="/main" render={() => <MainPage />} />
+    </BrowserRouter>
+  );
 }
-   export default Layout;
+export default Layout;

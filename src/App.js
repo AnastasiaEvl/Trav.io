@@ -1,16 +1,13 @@
-import React from 'react'
-import {BrowserRouter as Router} from 'react-router-dom'
-import Layout from './entranceForm/Layout';
-import FormEnter from './entranceForm/formEnter';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Layout from "./entranceForm/Layout";
 
-
-
-function App()  {
+function App() {
   return (
     <Router>
-    <Layout/>
+      <Layout />
     </Router>
-    )
+  );
 }
 
-export default App ;
+export default App;

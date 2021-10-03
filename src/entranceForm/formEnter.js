@@ -1,25 +1,11 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Modal from "./Modal/Modal";
-
-const styles = {
-  table: {
-    borderStyle: "solid",
-    width: 100,
-    backgroundColor: "#EDEDED",
-  },
-  td: {
-    textAlign: "center",
-  },
-  button: {
-    width: "80px",
-    height: "40px",
-  },
-};
+import TextCDA from "./Modal/TextCDA";
+import "./StyleEntrance.css";
 
 function FormEnter() {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [emptyEmail, setEmptyEmail] = useState(false);
@@ -32,8 +18,6 @@ function FormEnter() {
   );
   const [checked, setChecked] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-
-  // var clearEmail = false;
 
   function buttonChange() {
     if (errorEmail || errorPassword || errorConfirmPassword || !checked) {
@@ -51,7 +35,6 @@ function FormEnter() {
       setErrorEmail("Некорректный e-mail");
     } else {
       setErrorEmail("");
-      cheackEmail();
     }
   };
 
@@ -78,6 +61,10 @@ function FormEnter() {
   const blurHandler = (data) => {
     switch (data.target.name) {
       case "UserEmail":
+        if (email !== "") {
+          cheackEmail();
+        }
+        cheackEmail();
         setEmptyEmail(true);
         break;
       case "password":
@@ -89,46 +76,64 @@ function FormEnter() {
     }
   };
 
+  function mainPage() {
+    window.location = "/main";
+  }
+
   function postData() {
     axios
-      .post("https://https://f316-134-17-6-60.ngrok.io/logged_in_one", {
-        email,
-        password,
+      // .post("http://19da-93-125-107-39.ngrok.io/logged_in_one", {
+      .post("/registration", {
+        email: email,
+        password: password,
       })
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .catch((data) => {
+        // if (data.status === 200) {
+        window.location = "/signUp";
+        // }
+      })
+      .then((error) => console.log(error));
   }
 
   function cheackEmail() {
     axios
-      .post("https://https://f316-134-17-6-60.ngrok.io/logged_in_one", {
+      // .post("http://19da-93-125-107-39.ngrok.io/logged_in_one", {
+      .post("/cheack", {
         email: email,
       })
-      .then((data) => {
-        if (data.email === email) {
-          alert("такой email уже есть");
-        } else {
-          // clearEmail = true;
-        }
+      .catch((error) => {
+        //.then
+        console.log("Ok");
+        // if (data.email === email) {
+        // alert("Пользователь с таким именем существует");
+        // } else {
+        // clearEmail = true;
+        // }
       })
-      .catch((error) => console.log(error));
+      .then((data) => console.log("error"));
   }
 
   return (
     <div>
+      <div className="smallLogo">
+        <img src="/images/smallLogo.PNG" onClick={mainPage}></img>
+      </div>
+      <hr />
       <div className="wrapper">
-        <div className="logo">Здесь будет логотип</div>
-        <h3>Страница регистрации</h3>
+        <div className="logotype_R">
+          <img src="/images/logo.PNG" alt="logo"></img>
+        </div>
+        <p className="newUserTitle">Регистрация нового пользователя</p>
         <form>
-          <table style={styles.table}>
+          <table>
             <tbody>
               <tr>
-                <td style={styles.td}>
-                  <b>Email</b>
+                <td>
+                  <p>Email</p>
                 </td>
                 <td>
                   {emptyEmail && errorEmail && (
-                    <div style={{ color: "red" }}>{errorEmail}</div>
+                    <div className="errorMessage">{errorEmail}</div>
                   )}
                   <input
                     value={email}
@@ -144,12 +149,12 @@ function FormEnter() {
                 </td>
               </tr>
               <tr>
-                <td style={styles.td}>
-                  <b>Пароль</b>
+                <td>
+                  <p>Пароль</p>
                 </td>
                 <td>
                   {emptyPassword && errorPassword && (
-                    <div style={{ color: "red" }}>{errorPassword}</div>
+                    <div className="errorMessage">{errorPassword}</div>
                   )}
                   <input
                     value={password}
@@ -165,12 +170,12 @@ function FormEnter() {
                 </td>
               </tr>
               <tr>
-                <td style={styles.td}>
-                  <b>Подтвердите пароль</b>
+                <td>
+                  <p>Подтвердите пароль</p>
                 </td>
                 <td>
                   {emptyConfirmPassword && errorConfirmPassword && (
-                    <div style={{ color: "red" }}>{errorConfirmPassword}</div>
+                    <div className="errorMessage">{errorConfirmPassword}</div>
                   )}
                   <input
                     value={confirmPassword}
@@ -186,10 +191,7 @@ function FormEnter() {
               </tr>
               <tr>
                 <td>
-                  <p
-                    style={{ fontSize: "10pt", textDecoration: "underline" }}
-                    onClick={() => setModalActive(true)}
-                  >
+                  <p className="cdaText" onClick={() => setModalActive(true)}>
                     Я подтверждаю, что ознакомился с правилами пользования
                     Сервисом и Политикой конфиденциальности
                   </p>
@@ -201,82 +203,25 @@ function FormEnter() {
                     onChange={() => setChecked(!checked)}
                   />
                   <Modal active={modalActive} setActive={setModalActive}>
-                    <p style={{ fontSize: "18pt", textAlign: "justify" }}>
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                      Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                      natoque penatibus et magnis dis parturient montes,
-                      nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                      pellentesque eu, pretium quis, sem. Nulla consequat massa
-                      quis enim. Donec pede justo, fringilla vel, aliquet nec,
-                      vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
-                      a, venenatis vitae, justo. Nullam dictum felis eu pede
-                      mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
-                      elementum semper nisi. Aenean vulputate eleifend tellus.
-                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-                      ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
-                      feugiat a, tellus. Phasellus viverra nulla ut metus varius
-                      laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies
-                      nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam
-                      eget dui. Etiam rhoncus. Maecenas tempus, tellus eget
-                      condimentum rhoncus, sem quam semper libero, sit amet
-                      adipiscing sem neque sed ipsum. Nam quam nunc, blandit
-                      vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec
-                      odio et ante tincidunt tempus. Donec vitae sapien ut
-                      libero venenatis faucibus. Nullam quis ante. Etiam sit
-                      amet orci eget eros faucibus tincidunt. Duis leo. Sed
-                      fringilla mauris sit amet nibh. Donec sodales sagittis
-                      magna. Sed consequat, leo eget bibendum sodales, augue
-                      velit cursus nunc, Aenean commodo ligula eget dolor.
-                      Aenean massa. Cum sociis natoque penatibus et magnis dis
-                      parturient montes, nascetur ridiculus mus. Donec quam
-                      felis, ultricies nec, pellentesque eu, pretium quis, sem.
-                      Nulla consequat massa quis enim. Donec pede justo,
-                      fringilla vel, aliquet nec, vulputate eget, arcu. In enim
-                      justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-                      Nullam dictum felis eu pede mollis pretium. Integer
-                      tincidunt. Cras dapibus. Vivamus elementum semper nisi.
-                      Aenean vulputate eleifend tellus. Aenean leo ligula,
-                      porttitor eu, consequat vitae, eleifend ac, enim. Aliquam
-                      lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-                      Phasellus viverra nulla ut metus varius laoreet. Quisque
-                      rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
-                      Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
-                      rhoncus. Maecenas tempus, tellus eget condimentum rhoncus,
-                      sem quam semper libero, sit amet adipiscing sem neque sed
-                      ipsum. Nam quam nunc, blandit vel, luctus pulvinar,
-                      hendrerit id, lorem. Maecenas nec odio et ante tincidunt
-                      tempus. Donec vitae sapien ut libero venenatis faucibus.
-                      Nullam quis ante. Etiam sit amet orci eget eros faucibus
-                      tincidunt. Duis leo. Sed fringilla mauris sit amet nibh.
-                      Donec sodales sagittis magna. Sed consequat, leo eget
-                      bibendum sodales, augue velit cursus nunc,
-                    </p>
-                    <div
-                      style={{
-                        height: "50px",
-                        width: "150px",
-                        fontSize: "20pt",
-                        float: "right",
-                      }}
-                    >
-                      Закрыть
-                    </div>
+                    <TextCDA />
+
+                    <div className="closeBtn">Закрыть</div>
                   </Modal>
                 </td>
               </tr>
             </tbody>
           </table>
         </form>
-        <Link to="/signUp">
-          <button
-            type="submit"
-            name="confirmPass"
-            disabled={!buttonChange()}
-            onClick={postData}
-          >
-            Зарегистрироваться
-          </button>
-        </Link>
+
+        <button
+          className="RegisterBtn"
+          type="submit"
+          name="confirmPass"
+          disabled={!buttonChange()}
+          onClick={postData}
+        >
+          Подтвердить
+        </button>
       </div>
     </div>
   );
