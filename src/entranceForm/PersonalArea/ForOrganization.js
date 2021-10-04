@@ -1,20 +1,45 @@
 import React from "react";
 import { useState } from "react";
 import ContactPerson from "./ContactPerson";
-import "./PersonalAreaStyle.css";
 
 function ForOrganization() {
-  const [orgForm, setOrgForm] = useState();
-  const [orgName, setOrgName] = useState();
-  const [orgAct, setOrgAct] = useState();
-  const [payerNum, setPayerNum] = useState();
+  const [organizational_legal_form, setOrganizational_legal_form] = useState();
+  const [organization_name, setOrganization_name] = useState();
+  const [field_of_activity, setField_of_activity] = useState();
+  const [unp, setUnp] = useState();
   const [adress, setAdress] = useState();
   const [manufacturer, setManufacturer] = useState();
   const [supplier, setSupplier] = useState();
+  const [emptyOrganization_name, setEmptyOrganization_name] = useState(false);
+  const [errorOrganization_name, setErrorOrganization_name] = useState(
+    "Введите наименование организации"
+  );
 
   function mainPage() {
     window.location = "/main";
   }
+
+  const blurHandler = (data) => {
+    switch (data.target.name) {
+      case "organization_name":
+        if (organization_name !== "") {
+          Organization_nameHandler();
+        }
+
+        setEmptyOrganization_name(true);
+        break;
+    }
+  };
+
+  const Organization_nameHandler = (data) => {
+    setOrganization_name(data.target.value);
+    const re = /^[a-zA-Z0-9]{3,25}$/;
+    if (!re.test(String(data.target.value))) {
+      setErrorOrganization_name("Некорректно введено название компании");
+    } else {
+      setErrorOrganization_name("");
+    }
+  };
 
   return (
     <div className="fisrtBlock">
@@ -35,11 +60,17 @@ function ForOrganization() {
                 <p>Организационно-правовая форма</p>
               </td>
               <td>
-                <select>
-                  <option>ЗАО</option>
-                  <option>ОАО</option>
-                  <option>ООО</option>
-                  <option>РУП</option>
+                <select
+                  value={organizational_legal_form}
+                  type="organizational_legal_form"
+                  onChange={(data) =>
+                    setOrganizational_legal_form(data.target.value)
+                  }
+                >
+                  <option value="ZAO">ЗАО</option>
+                  <option value="OAO">ОАО</option>
+                  <option value="OOO">ООО</option>
+                  <option value="RUP">РУП</option>
                 </select>
               </td>
             </tr>
@@ -48,11 +79,18 @@ function ForOrganization() {
                 <p>Наименование организации</p>
               </td>
               <td>
+                {errorOrganization_name && emptyOrganization_name && (
+                  <div className="errorMessage">{errorOrganization_name}</div>
+                )}
                 <input
-                  value={orgForm}
-                  type="orgName"
+                  value={organization_name}
+                  type="organization_name"
+                  onBlur={(data) => blurHandler(data)}
                   required
-                  onChange={(data) => setOrgForm(data.target.value)}
+                  onChange={
+                    ((data) => setOrganization_name(data.target.value),
+                    (data) => Organization_nameHandler(data))
+                  }
                 ></input>
               </td>
             </tr>
@@ -83,8 +121,8 @@ function ForOrganization() {
               <td>
                 <input
                   required
-                  value={payerNum}
-                  onChange={(data) => setPayerNum(data.target.value)}
+                  value={unp}
+                  onChange={(data) => setUnp(data.target.value)}
                 ></input>
               </td>
             </tr>

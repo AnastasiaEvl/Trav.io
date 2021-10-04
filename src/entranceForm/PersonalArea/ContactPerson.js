@@ -1,10 +1,16 @@
 import React from "react";
-import "./PersonalAreaStyle.css";
+import { useState } from "react/cjs/react.development";
 
 function ContactPerson() {
+  const [last_name, setLast_name] = useState();
+  const [first_name, setFirst_Name] = useState();
+  const [patronymic, setPatronymic] = useState();
+  const [position, setPosition] = useState();
+  const [phone_number, setPhone_number] = useState();
+
   return (
     <div>
-      <h1>Данные по контактному лицу</h1>
+      <p className="title">Данные по контактному лицу</p>
       <form>
         <table>
           <tbody>
@@ -13,7 +19,11 @@ function ContactPerson() {
                 <p>Фамилия</p>
               </td>
               <td>
-                <input value="text"></input>
+                <input
+                  value={last_name}
+                  name="last_name"
+                  onChange={(data) => setLast_name(data.target.value)}
+                />
               </td>
             </tr>
             <tr>
@@ -21,7 +31,11 @@ function ContactPerson() {
                 <p>Имя</p>
               </td>
               <td>
-                <input value="text"></input>
+                <input
+                  value={first_name}
+                  name="first_name"
+                  onChange={(data) => setFirst_Name(data.target.value)}
+                ></input>
               </td>
             </tr>
             <tr>
@@ -29,7 +43,11 @@ function ContactPerson() {
                 <p>Отчество</p>
               </td>
               <td>
-                <input value="text"></input>
+                <input
+                  value={patronymic}
+                  name="patronymic"
+                  onChange={(data) => setPatronymic(data.target.value)}
+                ></input>
               </td>
             </tr>
             <tr>
@@ -37,7 +55,11 @@ function ContactPerson() {
                 <p>Ваша должность в организации</p>
               </td>
               <td>
-                <input value="text"></input>
+                <input
+                  value={position}
+                  name="position"
+                  onChange={(data) => setPosition(data.target.value)}
+                ></input>
               </td>
             </tr>
             <tr>
@@ -45,7 +67,11 @@ function ContactPerson() {
                 <p>Телефонный номер</p>
               </td>
               <td>
-                <input value="number"></input>
+                <input
+                  value={phone_number}
+                  name="phone_number"
+                  onChange={(data) => setPhone_number(data.target.value)}
+                ></input>
               </td>
             </tr>
           </tbody>
