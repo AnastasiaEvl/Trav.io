@@ -98,19 +98,18 @@ function ForOrganization() {
               <td>
                 <p>Сфера деятельности</p>
               </td>
-              <td>
+              <td
+                value={field_of_activity}
+                onChange={(data) => setField_of_activity(data.target.value)}
+              >
                 <input
                   type="radio"
                   value={manufacturer}
-                  onChange={(data) => setManufacturer(data.target.value)}
+                  name="field_of_activity"
                 />
                 Производитель
                 <br />
-                <input
-                  type="radio"
-                  value={supplier}
-                  onChange={(data) => setSupplier(data.target.value)}
-                />
+                <input type="radio" value={supplier} name="field_of_activity" />
                 Переработчик
               </td>
             </tr>
