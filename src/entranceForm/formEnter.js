@@ -14,7 +14,7 @@ function FormEnter() {
   const [errorEmail, setErrorEmail] = useState("Введите e-mail");
   const [errorPassword, setErrorPasword] = useState("Введите пароль");
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(
-    "Пароли не совпадают"
+    "Введите пароль повторно"
   );
   const [checked, setChecked] = useState(false);
   const [modalActive, setModalActive] = useState(false);
@@ -43,7 +43,9 @@ function FormEnter() {
     const re =
       /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,14}/g;
     if (!re.test(String(data.target.value))) {
-      setErrorPasword("Пароль не соответствует требованиям");
+      setErrorPasword(
+        "Пароль не соответствует требованиям:-не менее одного числа;- !@#$%^&*- хотя бы один указанный спецсимвол;- не менее одной латинской буквы в нижнем регистре;- не менее одной латинской буквы в верхнем регистре;-длина пароля:от 8 до 14 символов;"
+      );
     } else {
       setErrorPasword("");
     }
@@ -70,7 +72,7 @@ function FormEnter() {
       case "password":
         setEmptyPassword(true);
         break;
-      case "confirmPass":
+      case "confirmP":
         setEmptyConfirmPassword(true);
         break;
     }
@@ -150,7 +152,7 @@ function FormEnter() {
               </tr>
               <tr>
                 <td>
-                  <p>Пароль</p>
+                  <p>Пароль*</p>
                 </td>
                 <td>
                   {emptyPassword && errorPassword && (
@@ -169,6 +171,7 @@ function FormEnter() {
                   />
                 </td>
               </tr>
+
               <tr>
                 <td>
                   <p>Подтвердите пароль</p>
@@ -180,6 +183,7 @@ function FormEnter() {
                   <input
                     value={confirmPassword}
                     type="password"
+                    name="confirmP"
                     onBlur={(data) => blurHandler(data)}
                     required
                     onChange={
