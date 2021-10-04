@@ -4,7 +4,7 @@ import ContactPerson from "./ContactPerson";
 
 function ForOrganization() {
   const [organizational_legal_form, setOrganizational_legal_form] = useState();
-  const [organization_name, setOrganization_name] = useState();
+  const [organization_name, setOrganization_name] = useState("");
   const [field_of_activity, setField_of_activity] = useState();
   const [unp, setUnp] = useState();
   const [adress, setAdress] = useState();
@@ -33,7 +33,8 @@ function ForOrganization() {
 
   const Organization_nameHandler = (data) => {
     setOrganization_name(data.target.value);
-    const re = /^[a-zA-Z0-9]{3,25}$/;
+    const re = /^[\w]{3,25}$/;
+
     if (!re.test(String(data.target.value))) {
       setErrorOrganization_name("Некорректно введено название компании");
     } else {
@@ -84,8 +85,9 @@ function ForOrganization() {
                 )}
                 <input
                   value={organization_name}
-                  type="organization_name"
                   onBlur={(data) => blurHandler(data)}
+                  type="text"
+                  name="organization_name"
                   required
                   onChange={
                     ((data) => setOrganization_name(data.target.value),
