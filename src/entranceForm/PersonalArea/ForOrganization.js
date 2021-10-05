@@ -27,7 +27,7 @@ function ForOrganization() {
     switch (data.target.name) {
       case "organizationName":
         if (organizationName !== "") {
-          OrganizationNameHandler();
+          OrganizationNameHandler(data);
         }
         setEmptyOrganizationName(true);
         break;
@@ -39,13 +39,25 @@ function ForOrganization() {
 
   const OrganizationNameHandler = (data) => {
     setOrganizationName(data.target.value);
-    const re = /(?=.{3,25})$/;
+    const re = /^[А-Яа-я ]+/;
     if (!re.test(String(data.target.value))) {
       setErrorOrganizationName("Некорректно введено название организации");
-      console.log("ПРОБЛЕМА");
+      console.log(data.target.value);
     } else {
       setErrorOrganizationName("");
-      console.log("ВСЕ ОК");
+      console.log(data.target.value);
+    }
+  };
+
+  const unpHandler = (data) => {
+    setUnp(data.target.value);
+    const re = /^[0-9]{9,9}$/;
+    if (!re.test(String(data.target.value))) {
+      setErrorUnp("Неккоректно введен УНП");
+      console.log(data.target.value);
+    } else {
+      setErrorUnp("");
+      console.log(data.target.value);
     }
   };
 
@@ -115,6 +127,7 @@ function ForOrganization() {
                   type="radio"
                   value={manufacturer}
                   name="fieldOfActivity"
+                  checked
                 />
                 Производитель
                 <br />
@@ -127,10 +140,18 @@ function ForOrganization() {
                 <p>УНП</p>
               </td>
               <td>
+                {errorUnp && emptyUnp && (
+                  <div className="errorMessage">{errorUnp}</div>
+                )}
                 <input
                   required
                   value={unp}
-                  onChange={(data) => setUnp(data.target.value)}
+                  name="unp"
+                  onBlur={(data) => blurHandler(data)}
+                  onChange={
+                    ((data) => setUnp(data.target.value),
+                    (data) => unpHandler(data))
+                  }
                 ></input>
               </td>
             </tr>
