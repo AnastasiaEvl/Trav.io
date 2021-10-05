@@ -9,9 +9,21 @@ function ContactPerson() {
   const [first_name, setFirst_Name] = useState("");
   const [patronymic, setPatronymic] = useState("");
   const [position, setPosition] = useState("");
-  const [phone_number, setPhone_number] = useState();
-  const [emptyInf, setEmptyInf] = useState(false);
-  const [errorInf, setErrorInf] = useState("Введите информацию");
+  const [phone_number, setPhone_number] = useState("");
+
+  const [emptyLast_name, setEmptyLast_name] = useState(false);
+  const [emptyFirst_name, setEmptyFirst_name] = useState(false);
+  const [emptyPatronymic, setEmptyPatronymic] = useState(false);
+  const [emptyPosition, setEmptyPosition] = useState(false);
+  const [emptyPhone_number, setEmptyPhone_number] = useState(false);
+
+  const [errorLast_name, setErrorLast_name] = useState("Введите фамилию");
+  const [errorFirst_name, setErrorFirst_name] = useState("Введите имя");
+  const [errorPatronymic, setErrorPatronymic] = useState("Введите отчество");
+  const [errorPosition, setErrorPosition] = useState("Введите должность");
+  const [errorPhone_number, setErrorPhone_number] = useState(
+    "Введите номер телефона"
+  );
 
   const blurHandler = (data) => {
     switch (data.target.name) {
@@ -19,25 +31,31 @@ function ContactPerson() {
         if (last_name != "") {
           CorrectName(data);
         }
-        setEmptyInf(true);
+        setEmptyLast_name(true);
         break;
       case "first_name":
         if (first_name != "") {
           Correct_first_name(data);
         }
-        setEmptyInf(true);
+        setEmptyFirst_name(true);
         break;
       case "patronymic":
         if (patronymic != "") {
           CorrectPatronymic(data);
         }
-        setEmptyInf(true);
+        setEmptyPatronymic(true);
         break;
       case "position":
         if (position != "") {
           CorrectPosition(data);
         }
-        setEmptyInf(true);
+        setEmptyPosition(true);
+        break;
+      case "phone_number":
+        if (phone_number != "") {
+          CorrectPhone_number(data);
+        }
+        setEmptyPhone_number(true);
         break;
     }
   };
@@ -46,18 +64,18 @@ function ContactPerson() {
     setLast_name(data.target.value);
     const re = /^[А-Яа-я]+/;
     if (!re.test(String(data.target.value))) {
-      setErrorInf("Проверьте информацию");
+      setErrorLast_name("Проверьте информацию");
     } else {
-      setErrorInf("");
+      setErrorLast_name("");
     }
   };
   const Correct_first_name = (data) => {
     setFirst_Name(data.target.value);
     const re = /^[А-Яа-я]+/;
     if (!re.test(String(data.target.value))) {
-      setErrorInf("Проверьте информацию");
+      setErrorFirst_name("Проверьте информацию");
     } else {
-      setErrorInf("");
+      setErrorFirst_name("");
     }
   };
 
@@ -65,19 +83,30 @@ function ContactPerson() {
     setPatronymic(data.target.value);
     const re = /^[А-Яа-я]+/;
     if (!re.test(String(data.target.value))) {
-      setErrorInf("Проверьте информацию");
+      setErrorPatronymic("Проверьте информацию");
     } else {
-      setErrorInf("");
+      setErrorPatronymic("");
     }
   };
+
   const CorrectPosition = (data) => {
     setPosition(data.target.value);
-    console.log("ONE");
-    const re = /^[А-Яа-я ]+/;
+
+    const re = /^[А-Яа-я, - ]+/;
     if (!re.test(String(data.target.value))) {
-      setErrorInf("Проверьте информацию");
+      setErrorPosition("Проверьте информацию");
     } else {
-      setErrorInf("");
+      setErrorPosition("");
+    }
+  };
+
+  const CorrectPhone_number = (data) => {
+    setPhone_number(data.target.value);
+    const re = /^[0-9]{9,9}$/;
+    if (!re.test(String(data.target.value))) {
+      setErrorPhone_number("Проверьте информацию");
+    } else {
+      setErrorPhone_number("");
     }
   };
 
@@ -92,8 +121,8 @@ function ContactPerson() {
                 <p>Фамилия</p>
               </td>
               <td>
-                {emptyInf && errorInf && (
-                  <div className="errorMessage">{errorInf}</div>
+                {emptyLast_name && errorLast_name && (
+                  <div className="errorMessage">{errorLast_name}</div>
                 )}
                 <input
                   value={last_name}
@@ -111,8 +140,8 @@ function ContactPerson() {
                 <p>Имя</p>
               </td>
               <td>
-                {emptyInf && errorInf && (
-                  <div className="errorMessage">{errorInf}</div>
+                {emptyFirst_name && errorFirst_name && (
+                  <div className="errorMessage">{errorFirst_name}</div>
                 )}
                 <input
                   value={first_name}
@@ -130,8 +159,8 @@ function ContactPerson() {
                 <p>Отчество</p>
               </td>
               <td>
-                {emptyInf && errorInf && (
-                  <div className="errorMessage">{errorInf}</div>
+                {emptyPatronymic && errorPatronymic && (
+                  <div className="errorMessage">{errorPatronymic}</div>
                 )}
                 <input
                   value={patronymic}
@@ -149,8 +178,8 @@ function ContactPerson() {
                 <p>Ваша должность в организации</p>
               </td>
               <td>
-                {emptyInf && errorInf && (
-                  <div className="errorMessage">{errorInf}</div>
+                {emptyPosition && errorPosition && (
+                  <div className="errorMessage">{errorPosition}</div>
                 )}
                 <input
                   value={position}
@@ -168,10 +197,18 @@ function ContactPerson() {
                 <p>Телефонный номер</p>
               </td>
               <td>
+                {emptyPhone_number && errorPhone_number && (
+                  <div className="errorMessage">{errorPhone_number}</div>
+                )}
                 <input
                   value={phone_number}
+                  onBlur={(data) => blurHandler(data)}
                   name="phone_number"
-                  onChange={(data) => setPhone_number(data.target.value)}
+                  placeholder="9 цифр номера"
+                  onChange={
+                    ((data) => setPhone_number(data.target.value),
+                    (data) => CorrectPhone_number(data))
+                  }
                 ></input>
               </td>
             </tr>
