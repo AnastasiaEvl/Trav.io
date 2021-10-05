@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import FormEnter from "./formEnter";
 import ForOrganization from "./PersonalArea/ForOrganization";
-import SignUp from "./SignUp/SignUp";
 import MainPage from "../MainPage/MainPage";
 
 function Layout() {

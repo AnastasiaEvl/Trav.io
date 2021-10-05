@@ -1,19 +1,23 @@
 import React from "react";
-import { useState } from "react";
+import { ReactElement, useState, useEffect } from "react";
+import axios from "axios";
 import ContactPerson from "./ContactPerson";
+import { check } from "prettier";
 
 function ForOrganization() {
-  const [organizational_legal_form, setOrganizational_legal_form] = useState();
-  const [organization_name, setOrganization_name] = useState("");
-  const [field_of_activity, setField_of_activity] = useState();
+  const [organizationalLegalForm, setOrganizationalLegalForm] = useState();
+  const [organizationName, setOrganizationName] = useState("");
+  const [fieldOfActivity, setFieldOfActivity] = useState();
   const [unp, setUnp] = useState();
   const [adress, setAdress] = useState();
   const [manufacturer, setManufacturer] = useState();
   const [supplier, setSupplier] = useState();
-  const [emptyOrganization_name, setEmptyOrganization_name] = useState(false);
-  const [errorOrganization_name, setErrorOrganization_name] = useState(
+  const [emptyOrganizationName, setEmptyOrganizationName] = useState(false);
+  const [errorOrganizationName, setErrorOrganizationName] = useState(
     "Введите наименование организации"
   );
+  const [emptyUnp, setEmptyUnp] = useState(false);
+  const [errorUnp, setErrorUnp] = useState("Введите корректное УНП");
 
   function mainPage() {
     window.location = "/main";
@@ -21,24 +25,27 @@ function ForOrganization() {
 
   const blurHandler = (data) => {
     switch (data.target.name) {
-      case "organization_name":
-        if (organization_name !== "") {
-          Organization_nameHandler();
+      case "organizationName":
+        if (organizationName !== "") {
+          OrganizationNameHandler();
         }
-
-        setEmptyOrganization_name(true);
+        setEmptyOrganizationName(true);
+        break;
+      case "unp":
+        setEmptyUnp(true);
         break;
     }
   };
 
-  const Organization_nameHandler = (data) => {
-    setOrganization_name(data.target.value);
-    const re = /^[\w]{3,25}$/;
-
+  const OrganizationNameHandler = (data) => {
+    setOrganizationName(data.target.value);
+    const re = /(?=.{3,25})$/;
     if (!re.test(String(data.target.value))) {
-      setErrorOrganization_name("Некорректно введено название компании");
+      setErrorOrganizationName("Некорректно введено название организации");
+      console.log("ПРОБЛЕМА");
     } else {
-      setErrorOrganization_name("");
+      setErrorOrganizationName("");
+      console.log("ВСЕ ОК");
     }
   };
 
@@ -62,10 +69,10 @@ function ForOrganization() {
               </td>
               <td>
                 <select
-                  value={organizational_legal_form}
-                  type="organizational_legal_form"
+                  value={organizationalLegalForm}
+                  type="organizationalLegalForm"
                   onChange={(data) =>
-                    setOrganizational_legal_form(data.target.value)
+                    setOrganizationalLegalForm(data.target.value)
                   }
                 >
                   <option value="ZAO">ЗАО</option>
@@ -80,18 +87,18 @@ function ForOrganization() {
                 <p>Наименование организации</p>
               </td>
               <td>
-                {errorOrganization_name && emptyOrganization_name && (
-                  <div className="errorMessage">{errorOrganization_name}</div>
+                {errorOrganizationName && emptyOrganizationName && (
+                  <div className="errorMessage">{errorOrganizationName}</div>
                 )}
                 <input
-                  value={organization_name}
+                  value={organizationName}
                   onBlur={(data) => blurHandler(data)}
                   type="text"
-                  name="organization_name"
+                  name="organizationName"
                   required
                   onChange={
-                    ((data) => setOrganization_name(data.target.value),
-                    (data) => Organization_nameHandler(data))
+                    ((data) => setOrganizationName(data.target.value),
+                    (data) => OrganizationNameHandler(data))
                   }
                 ></input>
               </td>
@@ -101,17 +108,17 @@ function ForOrganization() {
                 <p>Сфера деятельности</p>
               </td>
               <td
-                value={field_of_activity}
-                onChange={(data) => setField_of_activity(data.target.value)}
+                value={fieldOfActivity}
+                onChange={(data) => setFieldOfActivity(data.target.value)}
               >
                 <input
                   type="radio"
                   value={manufacturer}
-                  name="field_of_activity"
+                  name="fieldOfActivity"
                 />
                 Производитель
                 <br />
-                <input type="radio" value={supplier} name="field_of_activity" />
+                <input type="radio" value={supplier} name="fieldOfActivity" />
                 Переработчик
               </td>
             </tr>
