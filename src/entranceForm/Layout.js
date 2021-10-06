@@ -8,6 +8,7 @@ import {
 import FormEnter from "./formEnter";
 import ForOrganization from "./PersonalArea/ForOrganization";
 import MainPage from "../MainPage/MainPage";
+import NextStep from "../NextStep/NextStep";
 
 function Layout() {
   return (
@@ -15,6 +16,7 @@ function Layout() {
       <Route exact path="/" render={() => <FormEnter />} />
       <Route path="/signUp" render={() => <ForOrganization />} />
       <Route path="/main" render={() => <MainPage />} />
+      <Route path="/NextStep" render={() => <NextStep />} />
     </BrowserRouter>
   );
 }
