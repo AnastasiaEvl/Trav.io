@@ -66,7 +66,6 @@ function FormEnter() {
         if (email !== "") {
           cheackEmail();
         }
-        cheackEmail();
         setEmptyEmail(true);
         break;
       case "password":

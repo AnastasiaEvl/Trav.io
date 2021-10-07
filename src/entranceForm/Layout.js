@@ -16,7 +16,7 @@ function Layout() {
       <Route exact path="/" render={() => <FormEnter />} />
       <Route path="/signUp" render={() => <ForOrganization />} />
       <Route path="/main" render={() => <MainPage />} />
-      <Route path="/NextStep" render={() => <NextStep />} />
+      <Route path="/nextStep" render={() => <NextStep />} />
     </BrowserRouter>
   );
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import { ReactElement, useState, useEffect } from "react";
 import axios from "axios";
-
+import { YMaps, Map } from "react-yandex-maps";
+import "./PersonalAreaStyle.css";
 import { check } from "prettier";
 
 function ForOrganization() {
@@ -10,8 +11,6 @@ function ForOrganization() {
   const [fieldOfActivity, setFieldOfActivity] = useState();
   const [unp, setUnp] = useState();
   const [adress, setAdress] = useState();
-  const [manufacturer, setManufacturer] = useState();
-  const [supplier, setSupplier] = useState();
 
   const [last_name, setLast_name] = useState("");
   const [first_name, setFirst_Name] = useState("");
@@ -58,6 +57,7 @@ function ForOrganization() {
       return true;
     }
   }
+
   const blurHandler = (data) => {
     switch (data.target.name) {
       case "organizationName":
@@ -102,13 +102,25 @@ function ForOrganization() {
     }
   };
 
+  const getSelectValue = (data) => {
+    setOrganizationalLegalForm(data.target.value);
+    console.log(data.target.value);
+  };
+
+  const getRadioButtonValue = (data) => {
+    setFieldOfActivity(data.target.value);
+    console.log(data.target.value);
+  };
+
   const CorrectName = (data) => {
     setLast_name(data.target.value);
     const re = /^[А-Яа-я]+/;
     if (!re.test(String(data.target.value))) {
       setErrorLast_name("Проверьте информацию");
+      console.log(data.target.value);
     } else {
       setErrorLast_name("");
+      console.log(data.target.value);
     }
   };
   const Correct_first_name = (data) => {
@@ -116,8 +128,10 @@ function ForOrganization() {
     const re = /^[А-Яа-я]+/;
     if (!re.test(String(data.target.value))) {
       setErrorFirst_name("Проверьте информацию");
+      console.log(data.target.value);
     } else {
       setErrorFirst_name("");
+      console.log(data.target.value);
     }
   };
 
@@ -126,8 +140,10 @@ function ForOrganization() {
     const re = /^[А-Яа-я]+/;
     if (!re.test(String(data.target.value))) {
       setErrorPatronymic("Проверьте информацию");
+      console.log(data.target.value);
     } else {
       setErrorPatronymic("");
+      console.log(data.target.value);
     }
   };
 
@@ -137,8 +153,10 @@ function ForOrganization() {
     const re = /^[А-Яа-я, - ]+/;
     if (!re.test(String(data.target.value))) {
       setErrorPosition("Проверьте информацию");
+      console.log(data.target.value);
     } else {
       setErrorPosition("");
+      console.log(data.target.value);
     }
   };
 
@@ -147,8 +165,10 @@ function ForOrganization() {
     const re = /^[0-9]{9,9}$/;
     if (!re.test(String(data.target.value))) {
       setErrorPhone_number("Проверьте информацию");
+      console.log(data.target.value);
     } else {
       setErrorPhone_number("");
+      console.log(data.target.value);
     }
   };
 
@@ -177,12 +197,12 @@ function ForOrganization() {
   };
 
   function postData() {
+    console.log("send on button");
     axios
-      // .post("http://19da-93-125-107-39.ngrok.io/logged_in_one", {
-      .post("/registration", {
-        // organizationalLegalForm,
-        organizationName,
-        // fieldOfActivity,
+      .post("/registration-full", {
+        organizationalLegalForm: organizationalLegalForm,
+        organizationName: organizationName,
+        fieldOfActivity: fieldOfActivity,
         unp: unp,
         adress: adress,
         last_name: last_name,
@@ -193,7 +213,7 @@ function ForOrganization() {
       })
       .catch((data) => {
         // if (data.status === 200) {
-        window.location = "/NextStep";
+        window.location = "/nextStep";
         // }
       })
       .then((error) => console.log(error));
@@ -222,14 +242,14 @@ function ForOrganization() {
                   <select
                     value={organizationalLegalForm}
                     type="organizationalLegalForm"
-                    onChange={(data) =>
-                      setOrganizationalLegalForm(data.target.value)
-                    }
+                    name="organizationalLegalForm"
+                    onChange={(data) => getSelectValue(data)}
                   >
-                    <option value="ZAO">ЗАО</option>
-                    <option value="OAO">ОАО</option>
-                    <option value="OOO">ООО</option>
-                    <option value="RUP">РУП</option>
+                    <option value="0"></option>
+                    <option value="1">ЗАО</option>
+                    <option value="2">ОАО</option>
+                    <option value="3">ООО</option>
+                    <option value="4">РУП</option>
                   </select>
                 </td>
               </tr>
@@ -258,21 +278,18 @@ function ForOrganization() {
                 <td>
                   <p>Сфера деятельности</p>
                 </td>
-                <td
-                  value={fieldOfActivity}
-                  onChange={(data) => setFieldOfActivity(data.target.value)}
-                >
+                <div onChange={(data) => getRadioButtonValue(data)}>
                   <input
                     type="radio"
-                    value={manufacturer}
+                    value="1"
                     name="fieldOfActivity"
-                    checked
+                    defaultState
                   />
                   Производитель
                   <br />
-                  <input type="radio" value={supplier} name="fieldOfActivity" />
+                  <input type="radio" value="2" name="fieldOfActivity" />
                   Переработчик
-                </td>
+                </div>
               </tr>
               <tr>
                 <td>
@@ -306,7 +323,16 @@ function ForOrganization() {
                   ></input>
                 </td>
               </tr>
-
+              <YMaps>
+                <div className="maps">
+                  <Map
+                    defaultState={{
+                      center: [53.8, 27.5],
+                      zoom: 8,
+                    }}
+                  />
+                </div>
+              </YMaps>
               <div>
                 <p className="title">Данные по контактному лицу</p>
               </div>
@@ -410,15 +436,17 @@ function ForOrganization() {
             </tbody>
           </table>
         </form>
+
+        <button
+          className="next"
+          type="submit"
+          name="confirmPass"
+          disabled={!buttonChange()}
+          onClick={() => postData()}
+        >
+          Дальше
+        </button>
       </div>
-      <button
-        className="next"
-        type="submit"
-        disabled={!buttonChange()}
-        onclick={postData}
-      >
-        <p>Дальше</p>
-      </button>
     </div>
   );
 }
