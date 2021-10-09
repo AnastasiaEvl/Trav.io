@@ -1,16 +1,10 @@
 import React from "react";
-import { ReactElement, useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { YMaps, Map } from "react-yandex-maps";
 import "./PersonalAreaStyle.css";
 import { check } from "prettier";
-import {
-  CountryDropdown,
-  RegionDropdown,
-  CountryRegionData,
-} from "react-country-region-selector";
 
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 function ForOrganization() {

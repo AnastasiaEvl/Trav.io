@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Modal from "./Modal/Modal";
 import TextCDA from "./Modal/TextCDA";

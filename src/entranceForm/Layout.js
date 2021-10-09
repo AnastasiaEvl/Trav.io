@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import FormEnter from "./formEnter";
 import ForOrganization from "./PersonalArea/ForOrganization";
 import MainPage from "../MainPage/MainPage";
