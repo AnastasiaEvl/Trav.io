@@ -26,11 +26,15 @@ td {
     height: '40px';
   }
 
-  input{
+  input, .selectStyle{
       background-color: #b1aeaee8;
       border-color:white;
       height:20px;
   }
+  .selectStyle {
+      height:30px
+  }
+  
   .errorMessage {
       color:red;
   }

@@ -81,37 +81,35 @@ function FormEnter() {
     window.location = "/main";
   }
 
-  function postData() {
+  function postData(data) {
     axios
-      // .post("http://19da-93-125-107-39.ngrok.io/logged_in_one", {
-      .post("/registration", {
+      .post("http://cabe-134-17-6-60.ngrok.io/logged_in_two", {
         email: email,
         password: password,
       })
-      .catch((data) => {
-        // if (data.status === 200) {
-        window.location = "/signUp";
-        // }
+      .then((data) => {
+        if (data.status === 200) {
+          window.location = "/signUp";
+        }
       })
-      .then((error) => console.log(error));
+      .catch((error) => console.log(error));
   }
 
-  function cheackEmail() {
+  function cheackEmail(data) {
     axios
-      // .post("http://19da-93-125-107-39.ngrok.io/logged_in_one", {
-      .post("/cheack", {
+      .post("http://cabe-134-17-6-60.ngrok.io/logged_in_one", {
         email: email,
       })
-      .catch((error) => {
-        //.then
+
+      .then((email) => {
+        if (data.email === email) {
+          alert("Пользователь с таким именем существует");
+        } else {
+          alert("ОК");
+        }
         console.log("Ok");
-        // if (data.email === email) {
-        // alert("Пользователь с таким именем существует");
-        // } else {
-        // clearEmail = true;
-        // }
       })
-      .then((data) => console.log("error"));
+      .catch((data) => console.log("error"));
   }
 
   return (

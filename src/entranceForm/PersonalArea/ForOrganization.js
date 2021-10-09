@@ -4,6 +4,14 @@ import axios from "axios";
 import { YMaps, Map } from "react-yandex-maps";
 import "./PersonalAreaStyle.css";
 import { check } from "prettier";
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from "react-country-region-selector";
+
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 function ForOrganization() {
   const [organizationalLegalForm, setOrganizationalLegalForm] = useState();
@@ -37,6 +45,9 @@ function ForOrganization() {
   const [emptyPatronymic, setEmptyPatronymic] = useState(false);
   const [emptyPosition, setEmptyPosition] = useState(false);
   const [emptyPhone_number, setEmptyPhone_number] = useState(false);
+
+  const [country, SetselectCountry] = useState();
+  const [region, SetselectRegion] = useState();
 
   function mainPage() {
     window.location = "/main";
@@ -240,12 +251,13 @@ function ForOrganization() {
                 </td>
                 <td>
                   <select
+                    className="selectStyle"
                     value={organizationalLegalForm}
                     type="organizationalLegalForm"
                     name="organizationalLegalForm"
                     onChange={(data) => getSelectValue(data)}
                   >
-                    <option value="0"></option>
+                    <option></option>
                     <option value="1">ЗАО</option>
                     <option value="2">ОАО</option>
                     <option value="3">ООО</option>
@@ -315,6 +327,51 @@ function ForOrganization() {
                 <td>
                   <p>Юридический адрес</p>
                 </td>
+                {/* <td>
+                  <p>Страна</p>
+                </td>
+                <td>
+                  <p>Область</p>
+                </td>
+                <td>
+                  <p>Город/н.п.</p>
+                </td>
+                <td>
+                  <p>Номер дома</p>
+                </td> */}
+
+                {/* <tr>
+                <td></td>
+                <td>
+                  <CountryDropdown
+                    className="selectStyle"
+                    defaultOptionLabel="Выберите страну"
+                    value={country}
+                    onChange={(val) => SetselectCountry(val)}
+                    priorityOptions={["BY"]}
+                  />
+                </td>
+                <td>
+                  <RegionDropdown
+                    className="selectStyle"
+                    blankOptionLabel="Страна не выбрана"
+                    defaultOptionLabel="Выберите регион"
+                    country={country}
+                    value={region}
+                    onChange={(val) => SetselectRegion(val)}
+                  />
+                </td>
+
+  
+                <td>
+                  <input
+                    value={adress}
+                    required
+                    onChange={(data) => setAdress(data.target.value)}
+                  ></input>
+                </td>
+              </tr> */}
+
                 <td>
                   <input
                     value={adress}
@@ -333,10 +390,10 @@ function ForOrganization() {
                   />
                 </div>
               </YMaps>
+
               <div>
                 <p className="title">Данные по контактному лицу</p>
               </div>
-
               <tr>
                 <td>
                   <p>Фамилия</p>
@@ -438,7 +495,7 @@ function ForOrganization() {
         </form>
 
         <button
-          className="next"
+          className="RegisterBtn"
           type="submit"
           name="confirmPass"
           disabled={!buttonChange()}

@@ -11,6 +11,7 @@ import MainPage from "../MainPage/MainPage";
 import NextStep from "../NextStep/NextStep";
 
 function Layout() {
+  // /props email, password
   return (
     <BrowserRouter>
       <Route exact path="/" render={() => <FormEnter />} />
