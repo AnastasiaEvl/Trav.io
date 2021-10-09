@@ -1,6 +1,5 @@
 import React from "react";
 import "./Modal.css";
-import TextCDA from "./TextCDA";
 
 const Modal = ({ active, setActive, children }) => {
   return (

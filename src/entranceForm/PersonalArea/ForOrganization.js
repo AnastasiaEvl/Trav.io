@@ -3,7 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 import { YMaps, Map } from "react-yandex-maps";
 import "./PersonalAreaStyle.css";
-import { check } from "prettier";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -39,9 +38,6 @@ function ForOrganization() {
   const [emptyPatronymic, setEmptyPatronymic] = useState(false);
   const [emptyPosition, setEmptyPosition] = useState(false);
   const [emptyPhone_number, setEmptyPhone_number] = useState(false);
-
-  const [country, SetselectCountry] = useState();
-  const [region, SetselectRegion] = useState();
 
   function mainPage() {
     window.location = "/main";
