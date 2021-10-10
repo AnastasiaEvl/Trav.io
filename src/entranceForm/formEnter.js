@@ -5,8 +5,15 @@ import TextCDA from "./Modal/TextCDA";
 import "./StyleEntrance.css";
 
 function FormEnter() {
+  //   const { email, setEmail } = props;
+  //   const { password, setPassword } = props;
+
+  //   console.log("password", password);
+  //   console.log("email", email);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
+
   const [confirmPassword, setConfirmPassword] = useState();
   const [emptyEmail, setEmptyEmail] = useState(false);
   const [emptyPassword, setEmptyPassword] = useState(false);
@@ -81,19 +88,29 @@ function FormEnter() {
     window.location = "/main";
   }
 
-  function postData(data) {
+  function postData(props) {
     axios
-      .post("http://cabe-134-17-6-60.ngrok.io/logged_in_two", {
-        email: email,
-        password: password,
+      .post("http://localhost:3001/signUp", {
+        email: { email },
+        password: { password },
       })
       .then((data) => {
-        if (data.status === 200) {
-          window.location = "/signUp";
-        }
+        window.location = "/signUp";
       })
-      .catch((error) => console.log(error));
+      .catch((error) => (window.location = "/signUp"));
   }
+
+  // axios
+  //   .post("http://cabe-134-17-6-60.ngrok.io/logged_in_two", {
+  //     email: email,
+  //     password: password,
+  //   })
+  //   .then((data) => {
+  //     window.location = "/signUp";
+  //     if (data.status === 200) {
+  //     }
+  //   })
+  //   .catch((error) => (window.location = "/signUp"));
 
   function cheackEmail(data) {
     axios
@@ -115,12 +132,12 @@ function FormEnter() {
   return (
     <div>
       <div className="smallLogo">
-        <img src="/images/smallLogo.PNG" onClick={mainPage}></img>
+        <img src="/images/smallLogo.PNG" onClick={mainPage} />
       </div>
       <hr />
       <div className="wrapper">
         <div className="logotype_R">
-          <img src="/images/logo.PNG" alt="logo"></img>
+          <img src="/images/logo.PNG" alt="logo" />
         </div>
         <p className="newUserTitle">Регистрация нового пользователя</p>
         <form>

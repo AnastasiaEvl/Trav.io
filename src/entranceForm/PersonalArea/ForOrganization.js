@@ -1,12 +1,18 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { YMaps, Map } from "react-yandex-maps";
+import { Map, YMaps } from "react-yandex-maps";
 import "./PersonalAreaStyle.css";
-
 import "mapbox-gl/dist/mapbox-gl.css";
 
-function ForOrganization() {
+function ForOrganization(props) {
+  const { email } = props;
+  const { setEmail } = props;
+  const { setPassword } = props;
+  const { password } = props;
+
+  console.log("password", password);
+  console.log("email", email);
+
   const [organizationalLegalForm, setOrganizationalLegalForm] = useState();
   const [organizationName, setOrganizationName] = useState("");
   const [fieldOfActivity, setFieldOfActivity] = useState();
@@ -71,31 +77,31 @@ function ForOrganization() {
         setEmptyUnp(true);
         break;
       case "last_name":
-        if (last_name != "") {
+        if (last_name !== "") {
           CorrectName(data);
         }
         setEmptyLast_name(true);
         break;
       case "first_name":
-        if (first_name != "") {
+        if (first_name !== "") {
           Correct_first_name(data);
         }
         setEmptyFirst_name(true);
         break;
       case "patronymic":
-        if (patronymic != "") {
+        if (patronymic !== "") {
           CorrectPatronymic(data);
         }
         setEmptyPatronymic(true);
         break;
       case "position":
-        if (position != "") {
+        if (position !== "") {
           CorrectPosition(data);
         }
         setEmptyPosition(true);
         break;
       case "phone_number":
-        if (phone_number != "") {
+        if (phone_number !== "") {
           CorrectPhone_number(data);
         }
         setEmptyPhone_number(true);
@@ -163,7 +169,7 @@ function ForOrganization() {
 
   const CorrectPhone_number = (data) => {
     setPhone_number(data.target.value);
-    const re = /^[0-9]{9,9}$/;
+    const re = /^[0-9]{9}$/;
     if (!re.test(String(data.target.value))) {
       setErrorPhone_number("Проверьте информацию");
       console.log(data.target.value);
@@ -187,7 +193,7 @@ function ForOrganization() {
 
   const unpHandler = (data) => {
     setUnp(data.target.value);
-    const re = /^[0-9]{9,9}$/;
+    const re = /^[0-9]{9}$/;
     if (!re.test(String(data.target.value))) {
       setErrorUnp("Неккоректно введен УНП");
       console.log(data.target.value);
@@ -197,15 +203,17 @@ function ForOrganization() {
     }
   };
 
-  function postData() {
+  function postData(data) {
     console.log("send on button");
     axios
       .post("/registration-full", {
+        email: { email },
+        password: { password },
         organizationalLegalForm: organizationalLegalForm,
         organizationName: organizationName,
         fieldOfActivity: fieldOfActivity,
         unp: unp,
-        adress: adress,
+        address: adress,
         last_name: last_name,
         first_name: first_name,
         patronymic: patronymic,
@@ -214,7 +222,7 @@ function ForOrganization() {
       })
       .catch((data) => {
         // if (data.status === 200) {
-        window.location = "/nextStep";
+        // window.location = "/nextStep";
         // }
       })
       .then((error) => console.log(error));
@@ -224,11 +232,11 @@ function ForOrganization() {
     <div>
       <div className="fisrtBlock">
         <div className="smallLogo">
-          <img src="/images/smallLogo.PNG" onClick={mainPage}></img>
+          <img src="/images/smallLogo.PNG" onClick={mainPage} />
         </div>
         <hr />
         <div className="logotype_R1">
-          <img src="/images/logo.PNG" alt="logo"></img>
+          <img src="/images/logo.PNG" alt="logo" />
         </div>
         <p className="newUserTitle">Регистрация нового пользователя</p>
         <p className="title">Данные по Вашей организации</p>
