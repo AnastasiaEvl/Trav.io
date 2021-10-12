@@ -355,7 +355,6 @@ function ForOrganization(props) {
                                     mapRef={mapRef}
                                     onViewportChange={handleGeocoderViewportChange}
                                     inputValue={adress}
-                                    onResult={getAddressValue}
                                     mapboxApiAccessToken={mapGLAccessToken}
 
                                     position="relative"
