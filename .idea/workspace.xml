@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a479ce21-6086-4089-80fd-94c81436eba1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entranceForm/PersonalArea/ForOrganization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entranceForm/PersonalArea/ForOrganization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,10 +65,23 @@
       <workItem from="1633893058011" duration="4750000" />
       <workItem from="1634058386000" duration="12000" />
       <workItem from="1634058422500" duration="5750000" />
+      <workItem from="1634067097325" duration="418000" />
     </task>
+    <task id="LOCAL-00001" summary="add map box dependency. Add map on /signUp page">
+      <created>1634067318060</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1634067318060</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add map box dependency. Add map on /signUp page" />
+    <option name="LAST_COMMIT_MESSAGE" value="add map box dependency. Add map on /signUp page" />
   </component>
 </project>

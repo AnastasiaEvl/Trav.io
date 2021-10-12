@@ -143,10 +143,6 @@ function ForOrganization(props) {
         setFieldOfActivity(data.target.value);
     };
 
-    const getAddressValue = (data) => {
-        console.log("address " + data.location);
-    }
-
     const CorrectName = (data) => {
         setLast_name(data.target.value);
         const re = /^[А-Яа-я]+/;
