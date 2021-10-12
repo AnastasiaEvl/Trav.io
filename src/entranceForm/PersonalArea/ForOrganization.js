@@ -139,6 +139,13 @@ function ForOrganization(props) {
         setOrganizationalLegalForm(data.target.value);
     };
 
+    const getAddressOnMap = (result) => {
+      // console.log(result);
+      const obj = JSON.stringify(result);
+      let parse = JSON.parse(obj);
+      console.log("obj" + obj);
+    }
+
     const getRadioButtonValue = (data) => {
         setFieldOfActivity(data.target.value);
     };
@@ -356,8 +363,10 @@ function ForOrganization(props) {
                                     onViewportChange={handleGeocoderViewportChange}
                                     inputValue={adress}
                                     mapboxApiAccessToken={mapGLAccessToken}
-
+                                    language={"RU"}
                                     position="relative"
+                                    onResult={getAddressOnMap}
+                                    // getItemValue={getAddressOnMap}
                                     placeholder="Введите  Ваш юридический адрес"
                                     countries="BY, RU, UA"
 
