@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a479ce21-6086-4089-80fd-94c81436eba1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entranceForm/PersonalArea/ForOrganization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/entranceForm/PersonalArea/ForOrganization.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +65,7 @@
       <workItem from="1633893058011" duration="4750000" />
       <workItem from="1634058386000" duration="12000" />
       <workItem from="1634058422500" duration="5750000" />
-      <workItem from="1634067097325" duration="2188000" />
+      <workItem from="1634067097325" duration="3434000" />
     </task>
     <task id="LOCAL-00001" summary="add map box dependency. Add map on /signUp page">
       <created>1634067318060</created>
@@ -89,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634067585892</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add map box dependency. Add map on /signUp page #4">
+      <created>1634069477961</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1634069477961</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +105,7 @@
     <MESSAGE value="add map box dependency. Add map on /signUp page" />
     <MESSAGE value="add map box dependency. Add map on /signUp page #2" />
     <MESSAGE value="add map box dependency. Add map on /signUp page #3" />
-    <option name="LAST_COMMIT_MESSAGE" value="add map box dependency. Add map on /signUp page #3" />
+    <MESSAGE value="add map box dependency. Add map on /signUp page #4" />
+    <option name="LAST_COMMIT_MESSAGE" value="add map box dependency. Add map on /signUp page #4" />
   </component>
 </project>

@@ -156,6 +156,7 @@ function ForOrganization(props) {
         if (!re.test(String(data.target.value))) {
             setErrorLast_name("Проверьте информацию");
         } else {
+
             setErrorLast_name("");
         }
     };
