@@ -1,0 +1,131 @@
+.main{
+    width: 100%;
+    max-width: 
+    3000px;
+    height: auto;
+   
+
+}
+.Lines{
+    margin-top: 1.62%;
+    width:100%;
+    opacity: 40%;
+    z-index: 0;
+    position:absolute;
+ 
+}
+.navBar1{
+  
+    z-index:4;
+    margin-top: 0px;
+    margin-left:0px;
+    border: 1px solid black;
+}
+.inst{
+    position: absolute;
+    margin-left:55.9%;
+    margin-top: 2.36%;
+    right: 42.36%;
+    z-index: 4;
+}
+.tel{
+    position: absolute;
+    margin-left: 58.3%;
+    margin-top: 2.36%;
+    z-index: 4;
+
+}
+.btn1{
+    position: absolute;
+    margin-left: 61.3%;
+    margin-top: 2.36%;
+
+}
+.Reg{
+    position: absolute;
+    margin-left: 78.54%;
+    margin-top: 2.63%;
+    margin-right: 15.97%;
+
+
+    font-family: Source Sans Pro;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+text-decoration-line: underline;
+
+color: #0C3122;
+
+
+}
+.Enter{
+    position: absolute;
+    margin-left: 85.76%;
+    margin-top: 2.36%;
+   
+}
+.mainLogo{
+    position: absolute;
+    margin-left:16%;
+    margin-top: 2.2%;
+    height: auto;
+    width: 11.9%;
+    z-index: 3;
+
+}
+.navBar2{
+    position: absolute;
+    margin-left:31%;
+    margin-top:7%;
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width:60%;
+    margin-right: 9.375%;
+    z-index: 3;
+  
+}
+.about, .list,.map,.goods,.faq,.news,.contacts,.img{font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+    padding-bottom: 0px;
+    
+    color: #0C3122;
+    }
+  .text1{
+      position: absolute;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-style: normal;
+font-weight:400;
+font-size: 30.5086px;
+line-height: 42px;
+
+align-items: left;
+
+color: #0C3122;
+margin-top:16.94%;
+margin-left:9.23%;
+width:46%;
+height:126px;
+
+
+  }
+ .bigLogo{
+    
+     position: absolute;
+     margin-top:16%;
+     margin-left: 61%;
+     height:195.84px;
+     width:25.83%;
+ }
+ .btnAdd{
+     position: absolute;
+     margin-top: 29%;
+     margin-left: 9.58%;
+     
+
+ }
