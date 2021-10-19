@@ -1,12 +1,8 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import "./PersonalAreaStyle.css";
-import "mapbox-gl/dist/mapbox-gl.css";
-import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import MapGL from "react-map-gl";
-import Geocoder from "react-map-gl-geocoder";
-
-const mapGLAccessToken = 'pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdWxsenhyeTA1cXEzMXAxZ2g3NDdlMzkifQ.GDjXqwu0XjZTxKksXpMVGQ';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import * as mapboxgl from "mapbox-gl";
 
 function ForOrganization(props) {
     const {email} = props;
@@ -14,30 +10,71 @@ function ForOrganization(props) {
     const {setPassword} = props;
     const {password} = props;
 
-    const [viewport, setViewport] = useState({
-        latitude: 53.893009,
-        longitude: 27.567444,
-        zoom: 10
+    mapboxgl.accessToken =
+        "pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdWxsenhyeTA1cXEzMXAxZ2g3NDdlMzkifQ.GDjXqwu0XjZTxKksXpMVGQ";
+
+    // const map = new mapboxgl.Map({
+    //     container: "map", // container ID
+    //     style: "mapbox://styles/mapbox/streets-v11", // style URL
+    //     center: [-74.5, 40], // starting position [lng, lat]
+    //     zoom: 9, // starting zoom
+    // });
+
+    // mapboxgl.accessToken = 'pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdWxsenhyeTA1cXEzMXAxZ2g3NDdlMzkifQ.GDjXqwu0XjZTxKksXpMVGQ';
+    // const map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: 'mapbox://styles/mapbox/streets-v11',
+    //     center: [-79.4512, 43.6568],
+    //     zoom: 13
+    // });
+
+    const mapContainer = useRef(null);
+    const map = useRef(null);
+    const [lng, setLng] = useState(-70.9);
+    const [lat, setLat] = useState(42.35);
+    const [zoom, setZoom] = useState(9);
+
+    useEffect(() => {
+        if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [lng, lat],
+            zoom: zoom
+        });
+
+        // map.addControl(
+        //     new MapboxGeocoder({
+        //         accessToken: mapboxgl.accessToken,
+        //         mapboxgl: mapboxgl
+        //     })
+        // );
     });
 
-    const mapRef = useRef();
-    const handleViewportChange = useCallback(
-        (newViewport) =>
-            setViewport(newViewport),
-        []
-    );
+    // const [viewport, setViewport] = useState({
+    //     latitude: 53.893009,
+    //     longitude: 27.567444,
+    //     zoom: 10
+    // });
 
-    const handleGeocoderViewportChange = useCallback(
-        (newViewport) => {
-            const geocoderDefaultOverrides = {transitionDuration: 1000};
+    // const mapRef = useRef();
+    // const handleViewportChange = useCallback(
+    //     (newViewport) =>
+    //         setViewport(newViewport),
+    //     []
+    // );
 
-            return handleViewportChange({
-                ...newViewport,
-                ...geocoderDefaultOverrides
-            });
-        },
-        [handleViewportChange]
-    );
+    // const handleGeocoderViewportChange = useCallback(
+    //     (newViewport) => {
+    //         const geocoderDefaultOverrides = {transitionDuration: 1000};
+
+    //         return handleViewportChange({
+    //             ...newViewport,
+    //             ...geocoderDefaultOverrides
+    //         });
+    //     },
+    //     [handleViewportChange]
+    // );
 
     const [organizationalLegalForm, setOrganizationalLegalForm] = useState();
     const [organizationName, setOrganizationName] = useState("");
@@ -139,12 +176,12 @@ function ForOrganization(props) {
         setOrganizationalLegalForm(data.target.value);
     };
 
-    const getAddressOnMap = (result) => {
-      // console.log(result);
-      const obj = JSON.stringify(result);
-      let parse = JSON.parse(obj);
-      console.log("obj" + obj);
-    }
+    // const getAddressOnMap = (result) => {
+    //   // console.log(result);
+    //   const obj = JSON.stringify(result);
+    //   let parse = JSON.parse(obj);
+    //   console.log("obj" + obj);
+    // }
 
     const getRadioButtonValue = (data) => {
         setFieldOfActivity(data.target.value);
@@ -156,7 +193,6 @@ function ForOrganization(props) {
         if (!re.test(String(data.target.value))) {
             setErrorLast_name("Проверьте информацию");
         } else {
-
             setErrorLast_name("");
         }
     };
@@ -350,30 +386,7 @@ function ForOrganization(props) {
                                 />
                             </td>
                         </tr>
-                        <div style={{height: "100vh"}}>
-                            <MapGL
-                                ref={mapRef}
-                                {...viewport}
-                                width="100%"
-                                height="100%"
-                                onViewportChange={handleViewportChange}
-                                mapboxApiAccessToken={mapGLAccessToken}
-                            >
-                                <Geocoder
-                                    mapRef={mapRef}
-                                    onViewportChange={handleGeocoderViewportChange}
-                                    inputValue={adress}
-                                    mapboxApiAccessToken={mapGLAccessToken}
-                                    language={"RU"}
-                                    position="relative"
-                                    onResult={getAddressOnMap}
-                                    // getItemValue={getAddressOnMap}
-                                    placeholder="Введите  Ваш юридический адрес"
-                                    countries="BY, RU, UA"
-
-                                />
-                            </MapGL>
-                        </div>
+                        <div ref={mapContainer} className="map-container" />
                         <div>
                             <p className="title">Данные по контактному лицу</p>
                         </div>
