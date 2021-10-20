@@ -34,7 +34,7 @@ function FirstBlock() {
           процесс переработки отходов для предприятий
         </div>
         <div>
-          <img className="bigLogo" scr="./images/bigLogo2.svg" />
+          <img className="bigLogo" scr="./images/mainLogo.svg" />
         </div>
         <img className="btnAdd" src="./images/btnAdd.svg" />
       </div>

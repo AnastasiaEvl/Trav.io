@@ -121,6 +121,7 @@ height:126px;
      margin-left: 61%;
      height:195.84px;
      width:25.83%;
+     z-index: 40;
  }
  .btnAdd{
      position: absolute;
@@ -131,12 +132,13 @@ height:126px;
  }
  .smallLogos{
      position: absolute;
-     margin-top:47.2%;
+     margin-top:680px;
      margin-left: 9.375%;
      display: flex;
      flex-direction: row;
     justify-content:space-between;
     width:81.5%;
+    z-index: 5;
  }
  .tree{
     
@@ -155,3 +157,83 @@ line-height: 25px;
 color: #0C3122;
 
  }
+ .green{
+     position: absolute;
+     margin-top: 1058px;
+     margin-left: 16.3%;
+     width: 67%;
+     margin-right:16.5%;
+    
+ }
+.g{ position: absolute;
+    z-index: 0;
+    width: 100%;
+}
+.wlogo{
+    position: absolute;
+    z-index:3;
+    margin-top: 8.05%;
+    margin-left: 4.86%;
+}
+.offerText1{
+    position: absolute;
+    margin-top: 5.14%;
+    margin-left: 40.625%;
+    font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 33px;
+
+
+text-align: center;
+width:59%;
+color: #FEFFE0;
+margin-right: 4.76%;
+
+}
+
+.btnOffer{
+    position: absolute;
+    margin-top:215px;
+    margin-left:56% ;
+    width:27.9%;
+}
+.text5{
+    position: absolute;
+    margin-left: 65%;
+    margin-top:300px;
+    font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 16px;
+
+text-align: center;
+
+color: #92C88A;
+}
+
+.partners{
+position: absolute;
+font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 48px;
+line-height: 65px;
+
+text-align: center;
+
+padding-top:60px ;
+margin-left: 36%;;
+color: #1F3E1A;
+
+}
+
+.carousel{
+    position: absolute;
+    margin-top: 1471px;
+    margin-left: 165px;
+    width:76.7%;
+}
+
