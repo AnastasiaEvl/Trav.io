@@ -126,6 +126,32 @@ height:126px;
      position: absolute;
      margin-top: 29%;
      margin-left: 9.58%;
-     
+    
+
+ }
+ .smallLogos{
+     position: absolute;
+     margin-top:47.2%;
+     margin-left: 9.375%;
+     display: flex;
+     flex-direction: row;
+    justify-content:space-between;
+    width:81.5%;
+ }
+ .tree{
+    
+     width:200px;
+     text-align: center;
+     margin-top: 0px;
+ }
+ .textTree{
+     margin-top:3.57%;
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 25px;
+
+color: #0C3122;
 
  }
