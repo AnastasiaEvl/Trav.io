@@ -6,6 +6,7 @@ import MainPage from "../MainPage/MainPage";
 import NextStep from "../NextStep/NextStep";
 import { useState } from "react/cjs/react.development";
 import Enter from "./Enter";
+import Registered from "../Registered/Registered";
 
 function Layout() {
   const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ function Layout() {
 
       <Route path="/nextStep" render={() => <NextStep />} />
       <Route path="/enter" render={() => <Enter />} />
+      <Route path="/registered" render={() => <Registered />} />
     </BrowserRouter>
   );
 }
