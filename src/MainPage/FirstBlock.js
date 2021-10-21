@@ -1,8 +1,16 @@
 import React from "react";
 import "../MainPage/MainPage.css";
 import Form from "../MainPage/Form";
+import MainPage from "./MainPage";
 
 function FirstBlock() {
+  function toReg() {
+    window.location = "/reg";
+  }
+
+  function MainPageTwo() {
+    window.location = "/enter";
+  }
   return (
     <div>
       <img className="Lines" src="./images/mainLines.svg" />
@@ -17,14 +25,14 @@ function FirstBlock() {
           <img className="btn1" src="./images/btnCreateOffer.svg" />{" "}
         </a>
 
-        <a className="Reg" href="#">
+        <a className="Reg" href="#" onClick={toReg}>
           Регистрация
         </a>
-        <a href="#">
+        <a href="#" onClick={MainPageTwo}>
           <img className="Enter" src="./images/enter.svg" />{" "}
         </a>
 
-        <img className="mainLogo" src="./images/mainLogo.svg" />
+        <img className="mainLogo" src="./images/mainLogo.png" />
 
         <div className="navBar2">
           <a href="#">
@@ -59,10 +67,10 @@ function FirstBlock() {
           <b>TraVio</b> - автоматизированное решение, призванное упростить
           процесс переработки отходов для предприятий
         </div>
-        <div>
-          <img className="bigLogo" scr="./images/mainLogo.svg" />
-        </div>
-        <a href="#">
+
+        <img className="bigLogo" scr="./images/mainLogo2.svg" />
+
+        <a href="#" onClick={toReg}>
           <img className="btnAdd" src="./images/btnAdd.svg" />{" "}
         </a>
       </div>
