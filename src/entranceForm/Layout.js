@@ -12,7 +12,8 @@ function Layout() {
   const [password, setPassword] = useState();
   return (
     <BrowserRouter>
-      <Route exact path="/main" render={() => <MainPage />} />
+      <Route exact path="/" render={() => <MainPage />} />
+      <Route path="/main" render={() => <MainPage />} />
       <Route
         path="/reg"
         render={() => (

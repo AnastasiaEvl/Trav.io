@@ -25,7 +25,14 @@ function EcoNews() {
           <img src="images/apples.png" />
           <div className="title_eco_news6">Новости в мире эко и Trav.io</div>
           <div className="link_eco3">
-            <a style={{ color: "#1F3E1A", cursor: "pointer" }} href="#">
+            <a
+              style={{
+                color: "#1F3E1A",
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
+              href="#"
+            >
               Читать далее
             </a>
           </div>
@@ -34,7 +41,14 @@ function EcoNews() {
           <img src="images/mountain.png" />
           <div className="title_eco_news6">Новости в мире эко и Trav.io</div>
           <div className="link_eco4">
-            <a style={{ color: "#1F3E1A", cursor: "pointer" }} href="#">
+            <a
+              style={{
+                color: "#1F3E1A",
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
+              href="#"
+            >
               Читать далее
             </a>
           </div>

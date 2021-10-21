@@ -12,7 +12,7 @@ function FirstBlock() {
   }
   return (
     <div>
-      <img className="Lines" src="./images/mainLines.svg" />
+      {/* <img className="Lines" src="./images/mainLines.svg" /> */}
 
       <div className="navBar1">
         <a href="#">
