@@ -12,7 +12,9 @@ function ThirdBlock() {
         Разместите заявку на переработку отходов и выберите наиболее удобное и
         выгодное для вас предложение
       </div>
-      <img className="btnOffer" src="images/btnOffer.png" />
+      <a href="#">
+        <img className="btnOffer" src="images/btnOffer.png" />
+      </a>
       <div className="text5">Займёт не более 5 минут!</div>
     </div>
   );
