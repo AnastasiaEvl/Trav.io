@@ -14,7 +14,6 @@ function Layout() {
     <BrowserRouter>
       <Route exact path="/main" render={() => <MainPage />} />
       <Route
-        exact
         path="/reg"
         render={() => (
           <FormEnter

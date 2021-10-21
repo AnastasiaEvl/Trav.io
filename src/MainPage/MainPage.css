@@ -7,11 +7,10 @@
 
 }
 .Lines{
-    margin-top: 1.62%;
+
+    position: absolute;;
     width:100%;
-    opacity: 40%;
-    z-index: 0;
-    position:absolute;
+    margin-top:49px;
  
 }
 .navBar1{
@@ -423,3 +422,5 @@ justify-content:space-around;
     a{
         text-decoration: none;
     }
+
+    

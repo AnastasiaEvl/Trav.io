@@ -17,20 +17,20 @@ function SecondBlock() {
         </div>
       </div>
       <div className="tree">
-        <img scr="images/bag.png"></img>
+        <img src="images/bag.png"></img>
         <div className="textTree">
           Выбирайте наиболее выгодные предложения по вашим критериям
         </div>
       </div>
       <div className="tree">
-        <img scr="images/hands.svg"></img>
+        <img src="images/hands.svg"></img>
         <div className="textTree">
           TraVio поможет определить другие виды отходов и конвертировать их в
           деньги
         </div>
       </div>
       <div className="tree">
-        <img scr="images/lamp.svg"></img>
+        <img src="images/lamp.svg"></img>
         <div className="textTree">
           Накапливайте бонусные баллы и получайте скидки на экотовары у наших
           партнёров

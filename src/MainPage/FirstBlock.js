@@ -1,7 +1,6 @@
 import React from "react";
 import "../MainPage/MainPage.css";
 import Form from "../MainPage/Form";
-import MainPage from "./MainPage";
 
 function FirstBlock() {
   function toReg() {
@@ -14,6 +13,7 @@ function FirstBlock() {
   return (
     <div>
       <img className="Lines" src="./images/mainLines.svg" />
+
       <div className="navBar1">
         <a href="#">
           <img className="inst" src="./images/instLogo.svg" />
@@ -68,7 +68,7 @@ function FirstBlock() {
           процесс переработки отходов для предприятий
         </div>
 
-        <img className="bigLogo" scr="./images/mainLogo2.svg" />
+        <img className="bigLogo" src="./images/mainLogo2.svg" />
 
         <a href="#" onClick={toReg}>
           <img className="btnAdd" src="./images/btnAdd.svg" />{" "}
