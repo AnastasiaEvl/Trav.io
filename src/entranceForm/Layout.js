@@ -1,10 +1,10 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import FormEnter from "./formEnter";
 import ForOrganization from "./PersonalArea/ForOrganization";
 import MainPage from "../MainPage/MainPage";
 import NextStep from "../NextStep/NextStep";
-import { useState } from "react/cjs/react.development";
+import {useState} from "react/cjs/react.development";
 import Enter from "./Enter";
 import Registered from "../Registered/Registered";
 

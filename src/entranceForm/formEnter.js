@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import Modal from "./Modal/Modal";
 import TextCDA from "./Modal/TextCDA";
 import "./StyleEntrance.css";
-import { Redirect } from "react-router";
+import {Redirect} from "react-router";
 
 function FormEnter(props) {
     const { email, setEmail } = props;

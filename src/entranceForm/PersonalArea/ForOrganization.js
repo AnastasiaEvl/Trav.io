@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import "./PersonalAreaStyle.css";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import * as mapboxgl from "mapbox-gl";
+import mapboxgl from "mapbox-gl";
 
 function ForOrganization(props) {
     const {email} = props;

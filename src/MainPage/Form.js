@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "../MainPage/MainPage.css";
 
 // const Input = () => {
