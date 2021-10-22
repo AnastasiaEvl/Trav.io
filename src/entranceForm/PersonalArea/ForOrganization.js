@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import "./PersonalAreaStyle.css";
-import 'mapbox-gl/dist/mapbox-gl.css';
-import mapboxgl from "mapbox-gl";
+// import 'mapbox-gl/dist/mapbox-gl.css';
+// import mapboxgl from "mapbox-gl";
 
 function ForOrganization(props) {
     const {email} = props;
@@ -10,8 +10,8 @@ function ForOrganization(props) {
     const {setPassword} = props;
     const {password} = props;
 
-    mapboxgl.accessToken =
-        "pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdWxsenhyeTA1cXEzMXAxZ2g3NDdlMzkifQ.GDjXqwu0XjZTxKksXpMVGQ";
+    // mapboxgl.accessToken =
+    //     "pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdWxsenhyeTA1cXEzMXAxZ2g3NDdlMzkifQ.GDjXqwu0XjZTxKksXpMVGQ";
 
     // const map = new mapboxgl.Map({
     //     container: "map", // container ID
@@ -28,20 +28,20 @@ function ForOrganization(props) {
     //     zoom: 13
     // });
 
-    const mapContainer = useRef(null);
-    const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
+    // const mapContainer = useRef(null);
+    // const map = useRef(null);
+    // const [lng, setLng] = useState(-70.9);
+    // const [lat, setLat] = useState(42.35);
+    // const [zoom, setZoom] = useState(9);
 
-    useEffect(() => {
-        if (map.current) return; // initialize map only once
-        map.current = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [lng, lat],
-            zoom: zoom
-        });
+    // useEffect(() => {
+    //     if (map.current) return; // initialize map only once
+        // map.current = new mapboxgl.Map({
+        //     container: mapContainer.current,
+        //     style: 'mapbox://styles/mapbox/streets-v11',
+        //     center: [lng, lat],
+        //     zoom: zoom
+        // });
 
         // map.addControl(
         //     new MapboxGeocoder({
@@ -49,7 +49,7 @@ function ForOrganization(props) {
         //         mapboxgl: mapboxgl
         //     })
         // );
-    });
+    // });
 
     // const [viewport, setViewport] = useState({
     //     latitude: 53.893009,
@@ -386,7 +386,7 @@ function ForOrganization(props) {
                                 />
                             </td>
                         </tr>
-                        <div ref={mapContainer} className="map-container" />
+                        {/*<div ref={mapContainer} className="map-container" />*/}
                         <div>
                             <p className="title">Данные по контактному лицу</p>
                         </div>
