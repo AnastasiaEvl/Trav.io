@@ -1,87 +1,91 @@
 hr {
-    color:gray;
-   
+    color: gray;
+
 }
-.newUserTitle{
+
+.newUserTitle {
     font-size: 20pt;
-    color:gray;
+    color: gray;
     text-align: center;
 }
 
 table {
-    
-    width: 100;
+
     font-size: 20px;
     max-width: 70%;
     width: 70%;
     text-align: center;
-  
-  }
-td {
-    text-align: "center";
-    
-  }
-  button {
-    width: '80px';
-    height: '40px';
-  }
 
-  input, .selectStyle{
-      background-color: #b1aeaee8;
-      border-color:white;
-      height:20px;
-  }
-  .selectStyle {
-      height:30px
-  }
-  
-  .errorMessage {
-      color:red;
-  }
-  .cdaText {
+}
+
+td {
+    text-align: center;
+
+}
+
+button {
+    width: 80px;
+    height: 40px;
+}
+
+input, .selectStyle {
+    background-color: #b1aeaee8;
+    border-color: white;
+    height: 20px;
+}
+
+.selectStyle {
+    height: 30px
+}
+
+.errorMessage {
+    color: red;
+}
+
+.cdaText {
     font-size: 10pt;
     text-decoration: underline;
     cursor: pointer;
-  }
- 
-  .closeBtn{
-    
-        height: 50px;
-        width: 150px;
-        font-size: 20pt;
-        float: right;
-        border: 1px solid grey;
-        border-radius: 50px;
-        cursor: pointer;
-        
-      }
-      .RegisterBtn {
-          margin-left: 150px;
-          margin-top:20px;
-          height: 50px;
-          width: 250px;
-          font-size: 14pt;
-    
-          border: 1px solid grey;
-          border-radius: 50px;
-          cursor: pointer;
-      } 
+}
 
-      .smallLogo {
-          cursor:pointer;
-      }
+.closeBtn {
 
-      .logotype_R{
-          margin-left:150px;
-      }
+    height: 50px;
+    width: 150px;
+    font-size: 20pt;
+    float: right;
+    border: 1px solid grey;
+    border-radius: 50px;
+    cursor: pointer;
 
-      .logotype_R1{
-          margin-left: 600px;
-      }
+}
 
-      .title{
-          font-weight:bold;
-          text-align: center;
-      }
-  
+.RegisterBtn {
+    margin-left: 150px;
+    margin-top: 20px;
+    height: 50px;
+    width: 250px;
+    font-size: 14pt;
+
+    border: 1px solid grey;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.smallLogo {
+    cursor: pointer;
+}
+
+.logotype_R {
+    margin-left: 150px;
+}
+
+.logotype_R1 {
+    margin-left: 600px;
+}
+
+.title {
+    font-weight: bold;
+    text-align: center;
+}
   
