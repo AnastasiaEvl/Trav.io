@@ -29,6 +29,7 @@ function Map() {
       "top-left"
     );
   });
+
   geocoder.on("results", function (results) {
     console.log(results);
   });

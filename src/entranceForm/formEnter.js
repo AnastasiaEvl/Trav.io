@@ -1,16 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Modal from "./Modal/Modal";
 import TextCDA from "./Modal/TextCDA";
 import "./StyleEntrance.css";
-import {Redirect} from "react-router";
+import { Redirect } from "react-router";
 
 function FormEnter(props) {
-    const { email, setEmail } = props;
-    const { password, setPassword } = props;
+  const { email, setEmail } = props;
+  const { password, setPassword } = props;
 
-    console.log("password", password);
-    console.log("email", email);
+  console.log("password", password);
+  console.log("email", email);
 
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState();
@@ -26,7 +26,7 @@ function FormEnter(props) {
   );
   const [checked, setChecked] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-  const [redirect, setRedirect] = useState(false)
+  const [redirect, setRedirect] = useState(false);
 
   function buttonChange() {
     if (errorEmail || errorPassword || errorConfirmPassword || !checked) {
@@ -98,17 +98,15 @@ function FormEnter(props) {
       })
       .then((data) => {
         // window.location = "/signUp";
-        setRedirect(true)
+        setRedirect(true);
       })
-      .catch((error) => 
-      // (window.location = "/signUp")
-      setRedirect(true)
+      .catch((error) =>
+        // (window.location = "/signUp")
+        setRedirect(true)
       );
   }
-  if(redirect){
-    return(
-      <Redirect to='signUp'/>
-    )
+  if (redirect) {
+    return <Redirect to="signUp" />;
   }
   // axios
   //   .post("http://cabe-134-17-6-60.ngrok.io/logged_in_two", {
