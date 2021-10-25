@@ -3,7 +3,7 @@ import axios from "axios";
 import "./PersonalAreaStyle.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import Map from "../PersonalArea/map";
+import Map from "./Map";
 
 function ForOrganization(props) {
   const { email } = props;

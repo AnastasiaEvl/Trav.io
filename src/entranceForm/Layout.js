@@ -1,17 +1,25 @@
 import React from "react";
 import {BrowserRouter, Route} from "react-router-dom";
-import FormEnter from "./formEnter";
+import FormEnter from "./FormEnter";
 import ForOrganization from "./PersonalArea/ForOrganization";
 import MainPage from "../MainPage/MainPage";
 import NextStep from "../NextStep/NextStep";
 import {useState} from "react/cjs/react.development";
 import Enter from "./Enter";
 import Registered from "../Registered/Registered";
+import {useSelector} from "react-redux";
+import {Switch} from "react-router";
+
 
 function Layout() {
+
+    const isAuth = useSelector(state => state.user.isAuth)
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
   return (
+
     <BrowserRouter>
       <Route exact path="/" render={() => <MainPage />} />
       <Route path="/main" render={() => <MainPage />} />
@@ -33,7 +41,7 @@ function Layout() {
 
       <Route path="/nextStep" render={() => <NextStep />} />
       <Route path="/enter" render={() => <Enter />} />
-      <Route path="/registered" render={() => <Registered />} />
+        {!isAuth && <Switch> <Route path="/registered" render={() => <Registered />}/> </Switch>}
     </BrowserRouter>
   );
 }

@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import axios from "axios";
 
 import "./StyleEntrance.css";
+import {login} from "./action/user";
+import {useDispatch} from "react-redux";
 
 function Enter() {
     const [email, setEmail] = useState();
@@ -18,6 +20,7 @@ function Enter() {
     const [checked, setChecked] = useState(false);
     const [modalActive, setModalActive] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    const dispatch = useDispatch()
 
     function buttonChange() {
         return !(errorEmail || errorPassword || errorConfirmPassword || !checked);
@@ -51,7 +54,7 @@ function Enter() {
         switch (data.target.name) {
             case "UserEmail":
                 if (email !== "") {
-                    cheackEmail();
+                    checkEmail();
                 }
                 setEmptyEmail(true);
                 break;
@@ -68,35 +71,51 @@ function Enter() {
         window.location = "/main";
     }
 
-    async function postData() {
-        try {
-            const response = await axios
-                .post("http://localhost:3001/signUp", {
-                    email: {email},
-                    password: {password},
-                })
-            console.log("User login response: " + response.data);
-            return response.data;
-        } catch (e) {
-            console.log("Error login message: " + e.response.data.message);
-        }
-        //   axios
-        //       .post("http://localhost:3001/signUp", {
-        //         email: {email},
-        //         password: {password},
-        //       })
-        //       .then((data) => {
-        //         // window.location = "/signUp";
-        //         setRedirect(true);
-        //       })
-        //       .catch((error) =>
-        //           // (window.location = "/signUp")
-        //           setRedirect(true)
-        //       );
-        // }
-    }
+    // function postData() {
+    //    login()
+    // try {
+    //     const response = await axios
+    //         .post("http://localhost:3001/signUp", {
+    //             email: {email},
+    //             password: {password},
+    //         })
+    //     console.log("User login response: " + response.data);
+    //     return response.data;
+    // } catch (e) {
+    //     console.log("Error login message: " + e.response.data.message);
+    // }
+    //   axios
+    //       .post("http://localhost:3001/signUp", {
+    //         email: {email},
+    //         password: {password},
+    //       })
+    //       .then((data) => {
+    //         // window.location = "/signUp";
+    //         setRedirect(true);
+    //       })
+    //       .catch((error) =>
+    //           // (window.location = "/signUp")
+    //           setRedirect(true)
+    //       );
+    // }
+    // }
 
-    function cheackEmail(data) {
+    // export const login =  (email, password) => {
+    //     return async dispatch => {
+    //         try {
+    //             const response = await axios.post(`http://localhost:5000/api/auth/login`, {
+    //                 email,
+    //                 password
+    //             })
+    //             dispatch(setUser(response.data.user))
+    //             localStorage.setItem('token', response.data.token)
+    //         } catch (e) {
+    //             alert(e.response.data.message)
+    //         }
+    //     }
+    // }
+
+    function checkEmail(data) {
         // axios
         //   .post("http://cabe-134-17-6-60.ngrok.io/logged_in_one", {
         //     email: email,
@@ -192,7 +211,7 @@ function Enter() {
                     type="submit"
                     name="confirmPass"
                     disabled={!buttonChange()}
-                    onClick={postData}
+                    onClick={() => dispatch(login(email, password))}
                 >
                     Подтвердить
                 </button>
