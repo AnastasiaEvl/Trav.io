@@ -1,11 +1,23 @@
-import React, {useState} from "react";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
 
 import "./StyleEntrance.css";
 import {login} from "./action/user";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../reducers/UserReducer";
+import {auth} from "../entranceForm/action/user";
+
 
 function Enter() {
+
+
+
+    const isAuth = useSelector(state => state.user.isAuth)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(auth())
+    }, [])
+
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -20,10 +32,10 @@ function Enter() {
     const [checked, setChecked] = useState(false);
     const [modalActive, setModalActive] = useState(false);
     const [redirect, setRedirect] = useState(false);
-    const dispatch = useDispatch()
+
 
     function buttonChange() {
-        return !(errorEmail || errorPassword || errorConfirmPassword || !checked);
+        return !(errorEmail || errorPassword);
     }
 
     const emailHandler = (data) => {
@@ -140,6 +152,9 @@ function Enter() {
             <hr/>
             <div className="wrapper">
                 <div className="logotype_R">
+                    {isAuth && <div className="Reg"  onClick={()=>dispatch(logout())}>
+                        Выход
+                    </div>}
                     <img src="/images/logo.PNG" alt="logo"/>
                 </div>
                 <p className="newUserTitle">Авторизация</p>
@@ -190,7 +205,7 @@ function Enter() {
                         </tr>
                         <tr>
                             <td>
-                                <p className="cdaText" onClick={() => setModalActive(true)}>
+                                <p>
                                     Запомнить меня
                                 </p>
                             </td>

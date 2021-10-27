@@ -7,13 +7,12 @@ import NextStep from "../NextStep/NextStep";
 import {useState} from "react/cjs/react.development";
 import Enter from "./Enter";
 import Registered from "../Registered/Registered";
-import {useSelector} from "react-redux";
-import {Switch} from "react-router";
+
 
 
 function Layout() {
 
-    const isAuth = useSelector(state => state.user.isAuth)
+
 
 
   const [email, setEmail] = useState("");
@@ -41,7 +40,7 @@ function Layout() {
 
       <Route path="/nextStep" render={() => <NextStep />} />
       <Route path="/enter" render={() => <Enter />} />
-        {!isAuth && <Switch> <Route path="/registered" render={() => <Registered />}/> </Switch>}
+       <Route path="/registered" render={() => <Registered />}/>
     </BrowserRouter>
   );
 }

@@ -1,14 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../MainPage/MainPage.css";
 import Form from "../MainPage/Form";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import {logout} from "../reducers/UserReducer";
+import {auth} from "../entranceForm/action/user";
 
 function FirstBlock() {
   const isAuth = useSelector(state => state.user.isAuth)
 
   const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(auth())
+  }, [])
   function toReg() {
     window.location = "/reg";
   }
@@ -18,7 +23,7 @@ function FirstBlock() {
   }
   return (
     <div>
-      {/* <img className="Lines" src="./images/mainLines.svg" /> */}
+
 
       <div className="navBar1">
         <a href="#">
@@ -37,9 +42,9 @@ function FirstBlock() {
         {!isAuth && <a href="#" onClick={MainPageTwo}>
           <img className="Enter" src="./images/enter.svg" />{" "}
         </a>}
-        {isAuth && <a className="Reg" href="#" onClick={()=>dispatch(logout())}>
+        {isAuth && <div className="Reg"  onClick={()=>dispatch(logout())}>
           Выход
-        </a>}
+        </div>}
 
         <img className="mainLogo" src="./images/mainLogo.png" />
 
