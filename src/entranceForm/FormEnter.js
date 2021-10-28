@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import Modal from "./Modal/Modal";
 import TextCDA from "./Modal/TextCDA";
 import "./StyleEntrance.css";
-import { Redirect } from "react-router";
+import {Redirect} from "react-router";
+import {auth} from "./action/user";
+import {useDispatch} from "react-redux";
 
 function FormEnter(props) {
   const { email, setEmail } = props;
@@ -28,12 +30,9 @@ function FormEnter(props) {
   const [modalActive, setModalActive] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
+
   function buttonChange() {
-    if (errorEmail || errorPassword || errorConfirmPassword || !checked) {
-      return false;
-    } else {
-      return true;
-    }
+    return !(errorEmail || errorPassword || errorConfirmPassword || !checked);
   }
 
   const emailHandler = (data) => {
@@ -97,11 +96,9 @@ function FormEnter(props) {
         password: { password },
       })
       .then((data) => {
-        // window.location = "/signUp";
         setRedirect(true);
       })
       .catch((error) =>
-        // (window.location = "/signUp")
         setRedirect(true)
       );
   }

@@ -9,39 +9,42 @@ import Enter from "./Enter";
 import Registered from "../Registered/Registered";
 
 
-
 function Layout() {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState();
+    const [address, setAddress] = useState();
+    const [coord, setCoord] = useState();
+    return (
 
+        <BrowserRouter>
+            <Route exact path="/" render={() => <MainPage/>}/>
+            <Route path="/main" render={() => <MainPage/>}/>
+            <Route
+                path="/reg"
+                render={() => (
+                    <FormEnter
+                        setEmail={setEmail}
+                        email={email}
+                        setPassword={setPassword}
+                        password={password}
+                    />
+                )}
+            />
+            <Route
+                path="/signUp"
+                render={() => <ForOrganization password={password}
+                                               email={email}
+                                               address={address}
+                                               coord={coord}
+                />}
+            />
 
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState();
-  return (
-
-    <BrowserRouter>
-      <Route exact path="/" render={() => <MainPage />} />
-      <Route path="/main" render={() => <MainPage />} />
-      <Route
-        path="/reg"
-        render={() => (
-          <FormEnter
-            setEmail={setEmail}
-            email={email}
-            setPassword={setPassword}
-            password={password}
-          />
-        )}
-      />
-      <Route
-        path="/signUp"
-        render={() => <ForOrganization password={password} email={email} />}
-      />
-
-      <Route path="/nextStep" render={() => <NextStep />} />
-      <Route path="/enter" render={() => <Enter />} />
-       <Route path="/registered" render={() => <Registered />}/>
-    </BrowserRouter>
-  );
+            <Route path="/nextStep" render={() => <NextStep/>}/>
+            <Route path="/enter" render={() => <Enter/>}/>
+            <Route path="/registered" render={() => <Registered/>}/>
+        </BrowserRouter>
+    );
 }
+
 export default Layout;

@@ -31,7 +31,7 @@ function Map() {
         });
         map.addControl(
             geocoder,
-            "top-left"
+            'top-right'
         );
 
         geocoder.on('result', (results) => (

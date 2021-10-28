@@ -1,22 +1,33 @@
 import React from "react";
 import "./Registered.css";
+import Modal from "../entranceForm/Modal/Modal";
+import TextCDA from "../entranceForm/Modal/TextCDA";
 
 function Registered() {
   return (
     <div className="registered">
-      <img className="firstLogo" src="./images/smallLogoForEnter.svg"></img>
+      <div><img className="firstLogo" src="./images/smallLogoForEnter.svg"></img></div>
+        <div><img className="big_bigLogo" src="./images/big_bigLogo.png"/></div>
       <div className="form1">
-        Вы уже зарегистрированы в системе?
-        <div>
-          <input type="text"></input>
-          <input type="text"></input>
+        <div>Вы уже зарегистрированы в системе?</div>
+        <div className='inputs' >
+            <input className="firstInput"  type="text"></input>
+            <input className="secondInput"  type="text"></input>
         </div>
-        <img src="./images/btnAdd.svg" />
+          <div className="checks" >
+                 <input type="checkbox" className="check"></input>
+              <div className="words"> <span className="remember" >
+                  Запомнить меня
+              </span>
+                 <a href='#'><span className="forget">Забыли пароль?</span></a>
+
+              </div></div>
+        <div className="btn_added"><button className="Added">Присоединиться</button></div>
       </div>
       <div className="form2">
         <div className="newUser1">Регистрация нового пользователя</div>
         <div>
-          <img src="./images/regBtn.png"></img>
+         <button className="btn_reg_one">Зарегистрироваться</button>
         </div>
       </div>
     </div>

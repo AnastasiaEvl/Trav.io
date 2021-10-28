@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 
 import "./StyleEntrance.css";
-import {login} from "./action/user";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../reducers/UserReducer";
-import {auth} from "../entranceForm/action/user";
+import {auth} from "./action/user";
 
 
 function Enter() {
@@ -226,7 +225,7 @@ function Enter() {
                     type="submit"
                     name="confirmPass"
                     disabled={!buttonChange()}
-                    onClick={() => dispatch(login(email, password))}
+                    onClick={() => dispatch(auth(email, password))}
                 >
                     Подтвердить
                 </button>

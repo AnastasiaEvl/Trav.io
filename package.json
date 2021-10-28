@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.22.0",
     "deck.gl": "^8.6.0",
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
     "mapbox-gl": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -49,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "config": "^3.3.6",
     "prettier": "2.4.1"
   }
 }
