@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken")
 const {check, validationResult} = require("express-validator")
-const router = new Router()
-
 const authMiddleware = require('../middleware/auth.middleware')
 const {Router} = require("react-router");
 
+const router = new Router()
 router.post('/registration',
     [
         check('email', "Uncorrect email").isEmail(),

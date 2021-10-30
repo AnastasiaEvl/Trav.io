@@ -4,8 +4,19 @@ import Modal from "./Modal/Modal";
 import TextCDA from "./Modal/TextCDA";
 import "./StyleEntrance.css";
 import {Redirect} from "react-router";
-import {auth} from "./action/user";
-import {useDispatch} from "react-redux";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Checkbox from '@mui/material/Checkbox';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
+
 
 function FormEnter(props) {
   const { email, setEmail } = props;
@@ -14,8 +25,6 @@ function FormEnter(props) {
   console.log("password", password);
   console.log("email", email);
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState();
 
   const [confirmPassword, setConfirmPassword] = useState();
   const [emptyEmail, setEmptyEmail] = useState(false);
@@ -34,6 +43,28 @@ function FormEnter(props) {
   function buttonChange() {
     return !(errorEmail || errorPassword || errorConfirmPassword || !checked);
   }
+  const [values, setValues] = React.useState({
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({...values, [prop]: event.target.value});
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const emailHandler = (data) => {
     setEmail(data.target.value);
@@ -135,49 +166,49 @@ function FormEnter(props) {
   }
 
   return (
-    <div>
-      <div className="smallLogo">
-        <img src="/images/smallLogo.PNG" onClick={mainPage} />
-      </div>
-      <hr />
-      <div className="wrapper">
-        <div className="logotype_R">
-          <img src="/images/logo.PNG" alt="logo" />
-        </div>
-        <p className="newUserTitle">Регистрация нового пользователя</p>
-        <form>
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <p>Email</p>
-                </td>
-                <td>
+
+  <div className="registered">
+          <div ><img className="firstLogo" src="./images/smallLogoForEnter.svg" onClick={mainPage}/></div>
+           <div><img className="big_bigLogo" src="./images/big_bigLogo.png"/></div>
+            <div><img className="numbers" src="./images/o_t_t.png"/> </div>
+
+
+      <div className="form3">
+
+        <div className="newUserTitle">Регистрация нового пользователя</div>
+          <Box
+              component="form"
+              sx={{
+                '& .MuiTextField-root': {m: 1, width: '100%'},
+
+              }}
+              noValidate
+              autoComplete="off"
+          >
+            <div className='inputs2'>
                   {emptyEmail && errorEmail && (
                     <div className="errorMessage">{errorEmail}</div>
                   )}
-                  <input
+                  <TextField
                     value={email}
+                    error={emptyEmail && errorEmail}
                     onBlur={(data) => blurHandler(data)}
                     type="email"
+                    id="outlined-search"
                     name="UserEmail"
                     required
+                    color="success"
+                    label="Email"
                     onChange={
                       ((data) => setEmail(data.target.value),
                       (data) => emailHandler(data))
                     }
                   />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Пароль*</p>
-                </td>
-                <td>
-                  {emptyPassword && errorPassword && (
-                    <div className="errorMessage">{errorPassword}</div>
-                  )}
-                  <input
+
+              {emptyPassword && errorPassword && (
+                  <div className="errorMessage2">{errorPassword}</div>
+              )}
+              <FormControl error={(emptyPassword && errorPassword)} color="success" sx={{m: 1, width: '100%'}} variant="outlined"
                     value={password}
                     onBlur={(data) => blurHandler(data)}
                     type="password"
@@ -186,58 +217,65 @@ function FormEnter(props) {
                     onChange={
                       ((data) => setPassword(data.target.value),
                       (data) => passHandler(data))
-                    }
-                  />
-                </td>
-              </tr>
+                    }>
+                   <InputLabel htmlFor="outlined-adornment-password">Пароль</InputLabel>
+                  <OutlinedInput
 
-              <tr>
-                <td>
-                  <p>Подтвердите пароль</p>
-                </td>
-                <td>
-                  {emptyConfirmPassword && errorConfirmPassword && (
-                    <div className="errorMessage">{errorConfirmPassword}</div>
-                  )}
-                  <input
-                    value={confirmPassword}
-                    type="password"
-                    name="confirmP"
-                    onBlur={(data) => blurHandler(data)}
-                    required
-                    onChange={
-                      ((data) => setConfirmPassword(data.target.value),
+                      id="outlined-adornment-password"
+                      type={values.showPassword ? 'text' : 'password'}
+                      value={values.password}
+                      onChange={handleChange('password')}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge="end"
+                          >
+                            {values.showPassword ? <VisibilityOff/> : <Visibility/>}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      label="Password"/>
+
+                 </FormControl>
+
+            {emptyConfirmPassword && errorConfirmPassword && (
+                <div className="errorMessage">{errorConfirmPassword}</div>
+            )}
+            <TextField error={(emptyConfirmPassword && errorConfirmPassword)} id="outlined-search" label="Подтвердить пароль" type="success" color="success"
+                value={confirmPassword}
+                type="password"
+                name="confirmP"
+                onBlur={(data) => blurHandler(data)}
+                required
+                onChange={
+                  ((data) => setConfirmPassword(data.target.value),
                       (data) => equalsPassword(data))
-                    }
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p className="cdaText" onClick={() => setModalActive(true)}>
-                    Я подтверждаю, что ознакомился с правилами пользования
-                    Сервисом и Политикой конфиденциальности
-                  </p>
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => setChecked(!checked)}
-                  />
-                  <Modal active={modalActive} setActive={setModalActive}>
-                    <TextCDA />
+                }
+            />
 
-                    <div className="closeBtn">Закрыть</div>
-                  </Modal>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
+            </div>
+            </Box>
+        <div className="checks5">
+          <Checkbox checked={checked}   onChange={() => setChecked(!checked)}
+          />
+          <Modal active={modalActive} setActive={setModalActive}>
+            <TextCDA />
+            <div className="closeBtn">Закрыть</div>
+          </Modal>
 
+
+
+         <div className="words2"> <span className="cdaText" onClick={() => setModalActive(true)}>
+         Я подтверждаю, что ознакомился с <p className='underline'>Правилами пользования
+          сервисом,Политикой конфиденциальности</p>
+                 </span>
+             </div>
+        </div>
         <button
-          className="RegisterBtn"
+          className="btn_reg_two"
           type="submit"
           name="confirmPass"
           disabled={!buttonChange()}
@@ -245,8 +283,12 @@ function FormEnter(props) {
         >
           Подтвердить
         </button>
+
+
       </div>
-    </div>
+  </div>
+
+
   );
 }
 

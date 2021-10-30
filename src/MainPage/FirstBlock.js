@@ -21,6 +21,9 @@ function FirstBlock() {
   function MainPageTwo() {
     window.location = "/enter";
   }
+  function enter(){
+    window.location='/enter';
+  }
   return (
     <div>
 
@@ -32,9 +35,9 @@ function FirstBlock() {
         <a href="#">
           <img className="tel" src="./images/telLogo.svg" />
         </a>
-        <a href="#">
-          <img className="btn1" src="./images/btnCreateOffer.svg" />{" "}
-        </a>
+
+          <img onClick={enter} className="btn1" src="./images/btnCreateOffer.svg" />{" "}
+
 
         {!isAuth && <a className="Reg" href="#" onClick={toReg}>
           Регистрация
@@ -68,7 +71,7 @@ function FirstBlock() {
             <div className="faq">FAQ</div>{" "}
           </a>
           <a href="#">
-            <div className="news">Новости</div>{" "}
+            <div className="news">Новости</div>
           </a>
           <a href="#">
             <div className="contacts">Контакты</div>{" "}

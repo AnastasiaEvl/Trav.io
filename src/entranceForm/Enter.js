@@ -1,19 +1,57 @@
 import React, {useEffect, useState} from "react";
-
 import "./StyleEntrance.css";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../reducers/UserReducer";
 import {auth} from "./action/user";
+import "../Registered/Registered.css";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import {green} from '@mui/material/colors';
+import Checkbox from '@mui/material/Checkbox';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
 
 
 function Enter() {
 
+    function newUser() {
+        window.location = '/reg';
+    }
 
+    const [values, setValues] = React.useState({
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
+    });
+
+    const handleChange = (prop) => (event) => {
+        setValues({...values, [prop]: event.target.value});
+    };
+
+    const handleClickShowPassword = () => {
+        setValues({
+            ...values,
+            showPassword: !values.showPassword,
+        });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const isAuth = useSelector(state => state.user.isAuth)
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(auth())
     }, [])
 
@@ -22,19 +60,22 @@ function Enter() {
 
     const [emptyEmail, setEmptyEmail] = useState(false);
     const [emptyPassword, setEmptyPassword] = useState(false);
-    const [emptyConfirmPassword, setEmptyConfirmPassword] = useState(false);
+
     const [errorEmail, setErrorEmail] = useState("Введите e-mail");
     const [errorPassword, setErrorPasword] = useState("Введите пароль");
-    const [errorConfirmPassword, setErrorConfirmPassword] = useState(
-        "Введите пароль повторно"
-    );
+
     const [checked, setChecked] = useState(false);
-    const [modalActive, setModalActive] = useState(false);
-    const [redirect, setRedirect] = useState(false);
 
 
     function buttonChange() {
-        return !(errorEmail || errorPassword);
+        if (errorEmail || errorPassword) {
+            return false
+        } else {
+            let el = document.getElementById("button_added");
+            el.style.backgroundColor = "green";
+            el.style.color = "white";
+            return true;
+        }
     }
 
     const emailHandler = (data) => {
@@ -42,11 +83,35 @@ function Enter() {
         const re =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!re.test(String(data.target.value).toLowerCase())) {
-            setErrorEmail("Некорректный e-mail");
+            setErrorEmail("Неверный e-mail");
         } else {
             setErrorEmail("");
         }
     };
+
+    const emailMessage = () => {
+        if (email !== "") {
+            setEmptyEmail(true);
+        } else if (email === "") {
+            setEmptyEmail(false);
+            let pas = document.getElementById("outlined-search");
+            pas.color = "error";
+            return true;
+        } else if (String(email).length > 0) {
+            setEmptyEmail(true)
+        }
+    }
+
+    const passwordMessage = () => {
+        if (String(password).length > 0) {
+            console.log(password);
+            setEmptyPassword(true)
+        } else if (password === "") {
+            setEmptyPassword(false);
+        } else if (password !== "") {
+            setEmptyEmail(true);
+        }
+    }
 
     const passHandler = (data) => {
         setPassword(data.target.value);
@@ -61,177 +126,123 @@ function Enter() {
         }
     };
 
-    const blurHandler = (data) => {
-        switch (data.target.name) {
-            case "UserEmail":
-                if (email !== "") {
-                    checkEmail();
-                }
-                setEmptyEmail(true);
-                break;
-            case "password":
-                setEmptyPassword(true);
-                break;
-            case "confirmP":
-                setEmptyConfirmPassword(true);
-                break;
-        }
-    };
+
 
     function mainPage() {
         window.location = "/main";
     }
 
-    // function postData() {
-    //    login()
-    // try {
-    //     const response = await axios
-    //         .post("http://localhost:3001/signUp", {
-    //             email: {email},
-    //             password: {password},
-    //         })
-    //     console.log("User login response: " + response.data);
-    //     return response.data;
-    // } catch (e) {
-    //     console.log("Error login message: " + e.response.data.message);
-    // }
-    //   axios
-    //       .post("http://localhost:3001/signUp", {
-    //         email: {email},
-    //         password: {password},
-    //       })
-    //       .then((data) => {
-    //         // window.location = "/signUp";
-    //         setRedirect(true);
-    //       })
-    //       .catch((error) =>
-    //           // (window.location = "/signUp")
-    //           setRedirect(true)
-    //       );
-    // }
-    // }
-
-    // export const login =  (email, password) => {
-    //     return async dispatch => {
-    //         try {
-    //             const response = await axios.post(`http://localhost:5000/api/auth/login`, {
-    //                 email,
-    //                 password
-    //             })
-    //             dispatch(setUser(response.data.user))
-    //             localStorage.setItem('token', response.data.token)
-    //         } catch (e) {
-    //             alert(e.response.data.message)
-    //         }
-    //     }
-    // }
-
-    function checkEmail(data) {
-        // axios
-        //   .post("http://cabe-134-17-6-60.ngrok.io/logged_in_one", {
-        //     email: email,
-        //   })
-        //
-        //   .then((email) => {
-        //     if (data.email === email) {
-        //       alert("Пользователь с таким именем существует");
-        //     } else {
-        //       alert("ОК");
-        //     }
-        //     console.log("Ok");
-        //   })
-        //   .catch((data) => console.log("error"));
-    }
 
     return (
-        <div>
-            <div className="smallLogo">
-                <img src="/images/smallLogo.PNG" onClick={mainPage}/>
-            </div>
-            <hr/>
-            <div className="wrapper">
-                <div className="logotype_R">
-                    {isAuth && <div className="Reg"  onClick={()=>dispatch(logout())}>
-                        Выход
-                    </div>}
-                    <img src="/images/logo.PNG" alt="logo"/>
-                </div>
-                <p className="newUserTitle">Авторизация</p>
-                <form>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <p>Email</p>
-                            </td>
-                            <td>
-                                {emptyEmail && errorEmail && (
-                                    <div className="errorMessage">{errorEmail}</div>
-                                )}
-                                <input
-                                    value={email}
-                                    onBlur={(data) => blurHandler(data)}
-                                    type="email"
-                                    name="UserEmail"
-                                    required
-                                    onChange={
-                                        ((data) => setEmail(data.target.value),
-                                            (data) => emailHandler(data))
-                                    }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Пароль</p>
-                            </td>
-                            <td>
-                                {emptyPassword && errorPassword && (
-                                    <div className="errorMessage">{errorPassword}</div>
-                                )}
-                                <input
-                                    value={password}
-                                    onBlur={(data) => blurHandler(data)}
-                                    type="password"
-                                    name="password"
-                                    required
-                                    onChange={
-                                        ((data) => setPassword(data.target.value),
-                                            (data) => passHandler(data))
-                                    }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>
-                                    Запомнить меня
-                                </p>
-                            </td>
-                            <td>
-                                <input
-                                    type="checkbox"
-                                    checked={checked}
-                                    onChange={() => setChecked(!checked)}
-                                />
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
+        <div className="registered">
 
-                <button
-                    className="RegisterBtn"
-                    type="submit"
-                    name="confirmPass"
-                    disabled={!buttonChange()}
-                    onClick={() => dispatch(auth(email, password))}
+            <div ><img className="firstLogo" src="./images/smallLogoForEnter.svg" onClick={mainPage}/></div>
+
+            <div><img className="big_bigLogo" src="./images/big_bigLogo.png"/></div>
+            {isAuth && <div className="Reg" onClick={() => dispatch(logout())}>
+                Выход
+            </div>}
+            <div className="form1">
+                <div>Вы уже зарегистрированы в системе?</div>
+
+                <Box
+                    component="form"
+                    sx={{
+                        '& .MuiTextField-root': {m: 1, width: '100%'},
+
+                    }}
+                    noValidate
+                    autoComplete="off"
                 >
-                    Подтвердить
-                </button>
+
+                    <div className='inputs'>
+                        {emptyEmail && errorEmail && (
+                            <div className="errorMessage">{errorEmail}</div>)}
+
+                        <TextField value={email} error = {(emptyEmail && errorEmail) } id="outlined-search" label="Email" type="success" color="success"
+                                   onBlur={(data) => emailMessage(data)}
+                                   type="email"
+                                   name="UserEmail"
+                                   required
+                                   onChange={
+                                       ((data) => setEmail(data.target.value),
+                                           (data) => emailHandler(data))
+
+                                   }
+                        />
+                        {emptyPassword && errorPassword && (
+                            <div className="errorMessage2">{errorPassword}</div>
+                        )}
+                        <FormControl error={(emptyPassword && errorPassword)} color="success" sx={{m: 1, width: '100%'}} variant="outlined"
+                                     value={password}
+                                     onBlur={(data) => passwordMessage(data)}
+                                     type="password"
+                                     name="password"
+                                     required
+                                     onChange={
+                                         ((data) => setPassword(data.target.value),
+                                             (data) => passHandler(data)
+                                         )
+                                     }>
+                            <InputLabel htmlFor="outlined-adornment-password">Пароль</InputLabel>
+                            <OutlinedInput
+
+                                id="outlined-adornment-password"
+                                type={values.showPassword ? 'text' : 'password'}
+                                value={values.password}
+                                onChange={handleChange('password')}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {values.showPassword ? <VisibilityOff/> : <Visibility/>}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Password"/>
+
+                        </FormControl>
+
+                    </div>
+                </Box>
+                <div className="checks">
+                    <Checkbox checked={checked}
+                              onChange={() => setChecked(!checked)}
+                              sx={{
+                                  '&.Mui-checked': {
+                                      color: green[600],
+                                  },
+                              }}
+                    />
+                    <div className="words"> <span className="remember">
+                  Запомнить меня
+              </span>
+                        <a href='#'><span className="forget">Забыли пароль?</span></a>
+
+                    </div>
+                </div>
+                <div className="btn_added">
+                    <button className="Added" className="RegisterBtn"
+                            type="submit"
+                            id='button_added'
+                            name="confirmPass"
+                            disabled={!buttonChange()}
+                            onClick={() => dispatch(auth(email, password))}>Присоединиться
+                    </button>
+                </div>
             </div>
-        </div>
-    );
+            <div className="form2">
+                <div className="newUser1">Регистрация нового пользователя</div>
+                <div>
+                    <button className="btn_reg_one" onClick={newUser}>Зарегистрироваться</button>
+                </div>
+            </div>
+        </div>)
 }
+
 
 export default Enter;

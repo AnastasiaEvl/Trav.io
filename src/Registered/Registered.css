@@ -17,6 +17,7 @@
     position: absolute;
     margin-top: 18px;
     margin-left: 9.375%;
+    cursor: pointer;
 }
 .big_bigLogo{
     height: 195.84px;
@@ -82,12 +83,12 @@ display: flex;
     position: absolute;
     width: 13.88%;
     height: 40.74px;
-    top: 563px;
     margin-left:12.84%;
     font-family: Open Sans;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
+
 
     text-align: center;
     color: #FFFFFF;
@@ -101,6 +102,10 @@ display: flex;
 }
 .btn_added{
     display: flex;
+    margin-top: 20px;
+    margin-left: 10%;
+
+
 
 }
 
@@ -146,27 +151,25 @@ display: flex;
 }
 .inputs{
     display: flex;
+    flex-direction: column;
+    position: center;
+    margin-left:17.54%;
+    width:64.9%;
+    margin-top: 25px;
 
 
 }
 .checks{
     display: flex;
-    margin-left:6.94%;
-    margin-top:91px;
+    margin-left:6.6%;
+    margin-top:0px;
     position: absolute;
 }
-.check{
-    display: flex;
-    margin-left: 6.94%;
-    margin-top: 70px;
-    position: absolute;
-    border: 2px solid black;
 
 
-}
 .words{
-position: absolute;
-    margin-top: 24px;
+
+    margin-top: 15px;
     white-space: nowrap;
 
 
@@ -174,6 +177,7 @@ position: absolute;
 .btn_reg_one{
     width: 250px;
     height:50px;
+    margin-top: 31px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: normal;
@@ -184,15 +188,13 @@ position: absolute;
     background: #52744D;
     box-shadow: 0px 4px 25px rgba(12, 49, 34, 0.2);
     border-radius: 107.308px;
-    margin-top: 31px;
     cursor: pointer;
 }
 
 .remember{
     display: flex;
     position: absolute;
-    margin-top: 50px;
-    margin-left: 20px;
+    margin-left: 5%;
     font-family: Open Sans;
     font-style: normal;
     font-weight: normal;
@@ -202,8 +204,7 @@ position: absolute;
 }
 .forget{
     position: absolute;
-    margin-left:400px;
-    margin-top: 50px;
+    margin-left:740%;
     font-family: Open Sans;
     font-style: normal;
     font-weight: normal;

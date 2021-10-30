@@ -321,7 +321,7 @@ function ForOrganization(props) {
                   /> */}
                             </td>
                         </tr>
-                        {/*<Map/>*/}
+                        <Map/>
                         <div>
                             <p className="title">Данные по контактному лицу</p>
                         </div>

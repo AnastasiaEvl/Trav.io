@@ -51,6 +51,8 @@
     ]
   },
   "devDependencies": {
+    "@mui/icons-material": "^5.0.5",
+    "@mui/material": "^5.0.6",
     "config": "^3.3.6",
     "prettier": "2.4.1"
   }

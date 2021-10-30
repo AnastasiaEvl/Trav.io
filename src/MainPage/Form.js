@@ -4,6 +4,7 @@ import "../MainPage/MainPage.css";
 const Form = () => {
 
   const [test, setTest] = useState(false);
+
   function onAddBtnClick() {
     setTest(true);
   }
