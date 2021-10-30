@@ -22,6 +22,7 @@ function FormEnter(props) {
   const { email, setEmail } = props;
   const { password, setPassword } = props;
 
+
   console.log("password", password);
   console.log("email", email);
 
@@ -274,7 +275,7 @@ function FormEnter(props) {
                  </span>
              </div>
         </div>
-        <button
+        <div
           className="btn_reg_two"
           type="submit"
           name="confirmPass"
@@ -282,7 +283,7 @@ function FormEnter(props) {
           onClick={postData}
         >
           Подтвердить
-        </button>
+        </div>
 
 
       </div>

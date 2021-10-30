@@ -14,19 +14,19 @@ export const registration = (email, password, organizationalLegalForm, organizat
         try {
             console.log("try");
             const response = await axios.post(`http://localhost:3001/login`, {
-                "email": email,
-                "password": password,
-                "organizationalLegalForm": organizationalLegalForm,
-                "organizationName": organizationName,
+                "email": { email },
+              "password": { password },
+               "organizationalLegalForm": organizationalLegalForm,
+               "organizationName": organizationName,
                 "fieldOfActivity": fieldOfActivity,
-                "unp": unp,
-                // "address" : address,
-                "last_name": last_name,
-                "first_name": first_name,
-                "patronymic": patronymic,
-                "position": position,
-                "phone_number": phone_number
-                // "coord" : coord
+               "unp": unp,
+               "address": address,
+               "last_name": last_name,
+               "first_name": first_name,
+             "patronymic": patronymic,
+                  "position": position,
+             "phone_number": phone_number,
+            "coord" : coord,
             })
             console.log("I registered" + response);
             dispatch(setUser(response.data.user))

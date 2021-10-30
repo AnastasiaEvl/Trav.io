@@ -38,7 +38,7 @@ function Map() {
             setAddress(results.result.place_name),
                 setCoord(results.result.center)
         ))
-    });
+    },[]);
 
 
     return (
