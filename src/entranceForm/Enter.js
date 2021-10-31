@@ -230,7 +230,7 @@ function Enter() {
                             type="submit"
                             id='button_added'
                             name="confirmPass"
-                            disabled={!buttonChange()}
+                            // disabled={!buttonChange()}
                             onClick={() => dispatch(auth(email, password))}>Присоединиться
                     </button>
                 </div>

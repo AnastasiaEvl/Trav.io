@@ -2,6 +2,7 @@ import axios from "axios";
 import {setUser} from "../../reducers/UserReducer";
 import {Redirect} from "react-router";
 import React from "react";
+import jwt_decode from 'jwt-decode'
 
 
 export const registration = (email, password, organizationalLegalForm, organizationName,
@@ -13,14 +14,14 @@ export const registration = (email, password, organizationalLegalForm, organizat
     return async dispatch => {
         try {
             console.log("try");
-            const response = await axios.post(`http://localhost:3001/login`, {
-                "email": { email },
-              "password": { password },
-               "organizationalLegalForm": organizationalLegalForm,
-               "organizationName": organizationName,
-                "fieldOfActivity": fieldOfActivity,
+            const response = await axios.post(`http://127.0.0.1:5000/logged_in_two`, {
+                "email":  email ,
+              "password": password ,
+               "organizational_legal_form": organizationalLegalForm,
+               "organization_name": organizationName,
+                "field_of_activity": fieldOfActivity,
                "unp": unp,
-               "address": address,
+            //    "address": address,
                "last_name": last_name,
                "first_name": first_name,
              "patronymic": patronymic,
@@ -41,12 +42,15 @@ export const registration = (email, password, organizationalLegalForm, organizat
 export const auth = (email, password) => {
     return async dispatch => {
         try {
-            const response = await axios.post(`http://localhost:3001/auth`, {
+            const response = await axios.post(`http://127.0.0.1:5000/login`, {
                 "email": email,
                 "password": password,
             })
+            console.log(response)
+            const decodedToken = jwt_decode( response.data.access_token)
+            console.log(decodedToken)
             dispatch(setUser(response.data.user))
-            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('token', response.data.access_token)
             console.log("I have token");
             return <Redirect to="main"/>;
         } catch (e) {
