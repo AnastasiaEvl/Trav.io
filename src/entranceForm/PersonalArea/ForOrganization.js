@@ -57,26 +57,26 @@ function ForOrganization(props) {
     function mainPage() {
         window.location = "/main";
     }
-
-    function buttonChange() {
-        if (
-            errorOrganizationName ||
-            errorUnp ||
-            errorLast_name ||
-            errorFirst_name ||
-            errorPatronymic ||
-            errorPosition ||
-            errorPhone_number
-        ) {
-            console.log("Coordinates: " + coord);
-            console.log("Address: " + address);
-            return false;
-        } else {
-            console.log(coord);
-            console.log(address);
-            return true;
-        }
-    }
+    //
+    // function buttonChange() {
+    //     if (
+    //         errorOrganizationName ||
+    //         errorUnp ||
+    //         errorLast_name ||
+    //         errorFirst_name ||
+    //         errorPatronymic ||
+    //         errorPosition ||
+    //         errorPhone_number
+    //     ) {
+    //         console.log("Coordinates: " + coord);
+    //         console.log("Address: " + address);
+    //          return false;
+    //     } else {
+    //         console.log(coord);
+    //         console.log(address);
+    //         return true;
+    //     }
+    // }
 
     const blurHandler = (data) => {
         switch (data.target.name) {
@@ -469,10 +469,10 @@ function ForOrganization(props) {
                     className="RegisterBtn"
                     type="submit"
                     name="confirmPass"
-                    disabled={!buttonChange()}
-                    onClick={() => dispatch(registration(email, password, organizationalLegalForm, organizationName,
-                        fieldOfActivity, unp, address, last_name, first_name,
-                        patronymic, position, phone_number, coord))}
+                    // disabled={!buttonChange()}
+                    // onClick={() => dispatch(registration(email, password, organizationalLegalForm, organizationName,
+                    //     fieldOfActivity, unp, address, last_name, first_name,
+                    //     patronymic, position, phone_number, coord))}
                 >
                     Дальше
                 </div>
