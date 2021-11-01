@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./PersonalAreaStyle.css";
-import "mapbox-gl/dist/mapbox-gl.css";
-import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+// import "mapbox-gl/dist/mapbox-gl.css";
+// import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import {registration} from "../action/user";
 import {useDispatch} from "react-redux";
 import mapboxgl from "mapbox-gl";
