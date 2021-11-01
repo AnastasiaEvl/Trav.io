@@ -1,17 +1,17 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./PersonalAreaStyle.css";
-// import "mapbox-gl/dist/mapbox-gl.css";
-// import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import {registration} from "../action/user";
 import {useDispatch} from "react-redux";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
-// mapboxgl.accessToken =
-//     "pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdjVidTg5aDBrNTcycW9rZjJrYjZyYXYifQ.cc8dzHKC47e0M31mSwAi9g";
-//
-// let map;
-// let geocoder;
+mapboxgl.accessToken =
+    "pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdjVidTg5aDBrNTcycW9rZjJrYjZyYXYifQ.cc8dzHKC47e0M31mSwAi9g";
+
+let map;
+let geocoder;
 
 function ForOrganization(props) {
 
@@ -21,8 +21,8 @@ function ForOrganization(props) {
     const [organizationalLegalForm, setOrganizationalLegalForm] = useState();
     const [organizationName, setOrganizationName] = useState("");
     const [fieldOfActivity, setFieldOfActivity] = useState();
-    // const [address, setAddress] = useState();
-    // const [coord, setCoord] = useState();
+    const [address, setAddress] = useState();
+    const [coord, setCoord] = useState();
     const [unp, setUnp] = useState();
     const dispatch = useDispatch()
     const mapContainer = useRef(null);
@@ -57,26 +57,26 @@ function ForOrganization(props) {
     function mainPage() {
         window.location = "/main";
     }
-    //
-    // function buttonChange() {
-    //     if (
-    //         errorOrganizationName ||
-    //         errorUnp ||
-    //         errorLast_name ||
-    //         errorFirst_name ||
-    //         errorPatronymic ||
-    //         errorPosition ||
-    //         errorPhone_number
-    //     ) {
-    //         console.log("Coordinates: " + coord);
-    //         console.log("Address: " + address);
-    //          return false;
-    //     } else {
-    //         console.log(coord);
-    //         console.log(address);
-    //         return true;
-    //     }
-    // }
+
+    function buttonChange() {
+        if (
+            errorOrganizationName ||
+            errorUnp ||
+            errorLast_name ||
+            errorFirst_name ||
+            errorPatronymic ||
+            errorPosition ||
+            errorPhone_number
+        ) {
+            console.log("Coordinates: " + coord);
+            console.log("Address: " + address);
+            return false;
+        } else {
+            console.log(coord);
+            console.log(address);
+            return true;
+        }
+    }
 
     const blurHandler = (data) => {
         switch (data.target.name) {
@@ -200,27 +200,27 @@ function ForOrganization(props) {
         }
     };
 
-    // useEffect(() => {
-    //     map = new mapboxgl.Map({
-    //         container: mapContainer.current,
-    //         style: "mapbox://styles/mapbox/streets-v11",
-    //         center: [27, 53],
-    //         zoom: 6,
-    //     });
-    //     geocoder = new MapboxGeocoder({
-    //         accessToken: mapboxgl.accessToken,
-    //         mapboxgl: mapboxgl,
-    //     });
-    //     map.addControl(
-    //         geocoder,
-    //         'top-right'
-    //     );
-    //
-    //     geocoder.on('result', (results) => (
-    //         setAddress(results.result.place_name),
-    //             setCoord(results.result.center)
-    //     ))
-    // }, []);
+    useEffect(() => {
+        map = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: "mapbox://styles/mapbox/streets-v11",
+            center: [27, 53],
+            zoom: 6,
+        });
+        geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+        });
+        map.addControl(
+            geocoder,
+            'top-right'
+        );
+
+        geocoder.on('result', (results) => (
+            setAddress(results.result.place_name),
+                setCoord(results.result.center)
+        ))
+    }, []);
 
     // function postData(data) {
     //   axios
@@ -354,13 +354,13 @@ function ForOrganization(props) {
                             </td>
                         </tr>
                         <div>
-                            {/*<div*/}
-                            {/*    id="map"*/}
-                            {/*    ref={mapContainer}*/}
-                            {/*    className="map-container"*/}
-                            {/*    style={{width: "100%", height: "80hv", marginLeft: "400px"}}*/}
-                            {/*/>*/}
-                            {/*<div id="geocoder" className="geocoder"/>*/}
+                            <div
+                                id="map"
+                                ref={mapContainer}
+                                className="map-container"
+                                style={{width: "100%", height: "80hv", marginLeft: "400px"}}
+                            />
+                            <div id="geocoder" className="geocoder"/>
                         </div>
                         <div>
                             <p className="title">Данные по контактному лицу</p>
@@ -469,10 +469,10 @@ function ForOrganization(props) {
                     className="RegisterBtn"
                     type="submit"
                     name="confirmPass"
-                    // disabled={!buttonChange()}
-                    // onClick={() => dispatch(registration(email, password, organizationalLegalForm, organizationName,
-                    //     fieldOfActivity, unp, address, last_name, first_name,
-                    //     patronymic, position, phone_number, coord))}
+                    disabled={!buttonChange()}
+                    onClick={() => dispatch(registration(email, password, organizationalLegalForm, organizationName,
+                        fieldOfActivity, unp, address, last_name, first_name,
+                        patronymic, position, phone_number, coord))}
                 >
                     Дальше
                 </div>
