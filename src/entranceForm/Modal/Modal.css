@@ -5,6 +5,7 @@
     position: fixed;
     top:0;
     left:0;
+    z-index: 5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +37,8 @@
 
 .textCDA{
     font-size: 18pt;
-    text-align: justify;}
+    text-align: justify
+;}
 .agreementTitle{
     text-align: center;
 }

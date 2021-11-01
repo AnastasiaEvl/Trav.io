@@ -7,6 +7,7 @@ import {logout} from "../reducers/UserReducer";
 import {auth} from "../entranceForm/action/user";
 
 function FirstBlock() {
+
   const isAuth = useSelector(state => state.user.isAuth)
 
   const dispatch = useDispatch()

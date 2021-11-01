@@ -130,8 +130,8 @@ background-image: url("./PersonalArea/Union.png");
     background-repeat: no-repeat;
     position: absolute;
     margin-left:27%;
-    width: 200px;
     height: 55px;
+    width: 200px;
     z-index: 5;
     background-size: 100%;
     margin-top: 80px;
@@ -144,8 +144,11 @@ background-image: url("./PersonalArea/Union.png");
     padding-left: 15px;
     padding-right: 10px;
     padding-top: 15px;
+    height: 55px;
+
 
 }
+
 
 .numbers{
     position: absolute;
@@ -221,9 +224,69 @@ words2{
     line-height: 23px;
     text-align: center;
     color: #FEFFE0;
-    background: #52744D;
-    box-shadow: 0px 4px 25px rgba(12, 49, 34, 0.2);
+    background-color: #B3B3B3;
     border-radius: 107.308px;
     cursor: pointer;
 
+}
+.errorMessage4{
+    background-image: url("./PersonalArea/Union.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    margin-left:27%;
+    width: 200px;
+    height: 55px;
+    z-index: 5;
+    background-size: 100%;
+    margin-top: 150px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: black;
+    padding-left: 25px;
+    padding-right: 10px;
+    padding-top: 15px;
+
+}
+#errorFive{
+
+    background-repeat: no-repeat;
+    position: absolute;
+    margin-left:-50px;
+    width: 333px;
+    height: 200px;
+    z-index: 7;
+    background-size: 100%;
+    margin-top: -45px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: black;
+    padding-left: 25px;
+    padding-right: 10px;
+    padding-top: 15px;
+
+
+}
+
+.union{
+    position:absolute;
+    z-index: 0;
+    margin-left: -200px;
+    height:150px;
+    width:380px;
+    margin-top: -15px;
+
+}
+
+.list{
+    position: absolute;
+    z-index: 3;
+    text-align:left;
+    margin-left: -10px;
+    margin-top: -15px;
 }

@@ -16,10 +16,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-
-
-
-function Enter() {
+function AuthorizationForm() {
 
     function newUser() {
         window.location = '/reg';
@@ -104,7 +101,6 @@ function Enter() {
 
     const passwordMessage = () => {
         if (String(password).length > 0) {
-            console.log(password);
             setEmptyPassword(true)
         } else if (password === "") {
             setEmptyPassword(false);
@@ -126,17 +122,14 @@ function Enter() {
         }
     };
 
-
-
     function mainPage() {
         window.location = "/main";
     }
 
-
     return (
         <div className="registered">
 
-            <div ><img className="firstLogo" src="./images/smallLogoForEnter.svg" onClick={mainPage}/></div>
+            <div><img className="firstLogo" src="./images/smallLogoForEnter.svg" onClick={mainPage}/></div>
 
             <div><img className="big_bigLogo" src="./images/big_bigLogo.png"/></div>
             {isAuth && <div className="Reg" onClick={() => dispatch(logout())}>
@@ -159,7 +152,8 @@ function Enter() {
                         {emptyEmail && errorEmail && (
                             <div className="errorMessage">{errorEmail}</div>)}
 
-                        <TextField value={email} error = {(emptyEmail && errorEmail) } id="outlined-search" label="Email" type="success" color="success"
+                        <TextField value={email} error={(emptyEmail && errorEmail)} id="outlined-search" label="Email"
+                                   type="success" color="success"
                                    onBlur={(data) => emailMessage(data)}
                                    type="email"
                                    name="UserEmail"
@@ -173,7 +167,8 @@ function Enter() {
                         {emptyPassword && errorPassword && (
                             <div className="errorMessage2">{errorPassword}</div>
                         )}
-                        <FormControl error={(emptyPassword && errorPassword)} color="success" sx={{m: 1, width: '100%'}} variant="outlined"
+                        <FormControl error={(emptyPassword && errorPassword)} color="success" sx={{m: 1, width: '100%'}}
+                                     variant="outlined"
                                      value={password}
                                      onBlur={(data) => passwordMessage(data)}
                                      type="password"
@@ -181,7 +176,7 @@ function Enter() {
                                      required
                                      onChange={
                                          ((data) => setPassword(data.target.value),
-                                             (data) => passHandler(data)
+                                                 (data) => passHandler(data)
                                          )
                                      }>
                             <InputLabel htmlFor="outlined-adornment-password">Пароль</InputLabel>
@@ -245,4 +240,4 @@ function Enter() {
 }
 
 
-export default Enter;
+export default AuthorizationForm;

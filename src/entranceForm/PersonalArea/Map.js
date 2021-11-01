@@ -12,10 +12,11 @@ mapboxgl.accessToken =
 let map;
 let geocoder;
 
-function Map() {
+function Map(props) {
 
-    const [address, setAddress] = useState();
-    const [coord, setCoord] = useState();
+    const {address, setAddress} = props;
+    const {coord, setCoord} = props;
+
     const mapContainer = useRef(null);
 
     useEffect(() => {
@@ -38,7 +39,7 @@ function Map() {
             setAddress(results.result.place_name),
                 setCoord(results.result.center)
         ))
-    },[]);
+    }, []);
 
 
     return (

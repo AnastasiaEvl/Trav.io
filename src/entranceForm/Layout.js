@@ -5,16 +5,13 @@ import ForOrganization from "./PersonalArea/ForOrganization";
 import MainPage from "../MainPage/MainPage";
 import NextStep from "../NextStep/NextStep";
 import {useState} from "react/cjs/react.development";
-import Enter from "./Enter";
-
+import AuthorizationForm from "./AuthorizationForm";
 
 
 function Layout() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState();
-    const [address, setAddress] = useState();
-    const [coord, setCoord] = useState();
     return (
 
         <BrowserRouter>
@@ -33,15 +30,15 @@ function Layout() {
             />
             <Route
                 path="/signUp"
-                render={() => <ForOrganization password={password}
-                                               email={email}
-                                               address={address}
-                                               coord={coord}
-                />}
+                render={() =>
+                    <ForOrganization
+                        password={password}
+                        email={email}
+                    />}
             />
 
             <Route path="/nextStep" render={() => <NextStep/>}/>
-            <Route path="/enter" render={() => <Enter/>}/>
+            <Route path="/enter" render={() => <AuthorizationForm/>}/>
 
         </BrowserRouter>
     );

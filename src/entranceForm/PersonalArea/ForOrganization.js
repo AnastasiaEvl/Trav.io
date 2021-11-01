@@ -1,24 +1,31 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./PersonalAreaStyle.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import Map from "./Map";
 import {registration} from "../action/user";
 import {useDispatch} from "react-redux";
+import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+
+mapboxgl.accessToken =
+    "pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdjVidTg5aDBrNTcycW9rZjJrYjZyYXYifQ.cc8dzHKC47e0M31mSwAi9g";
+
+let map;
+let geocoder;
 
 function ForOrganization(props) {
+
     const {email} = props;
-    const {setEmail} = props;
-    const {setPassword} = props;
     const {password} = props;
-    const {address} = props;
-    const {coord} = props;
 
     const [organizationalLegalForm, setOrganizationalLegalForm] = useState();
     const [organizationName, setOrganizationName] = useState("");
     const [fieldOfActivity, setFieldOfActivity] = useState();
+    const [address, setAddress] = useState();
+    const [coord, setCoord] = useState();
     const [unp, setUnp] = useState();
     const dispatch = useDispatch()
+    const mapContainer = useRef(null);
 
 
     const [last_name, setLast_name] = useState("");
@@ -61,8 +68,12 @@ function ForOrganization(props) {
             errorPosition ||
             errorPhone_number
         ) {
+            console.log("Coordinates: " + coord);
+            console.log("Address: " + address);
             return false;
         } else {
+            console.log(coord);
+            console.log(address);
             return true;
         }
     }
@@ -189,6 +200,27 @@ function ForOrganization(props) {
         }
     };
 
+    useEffect(() => {
+        map = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: "mapbox://styles/mapbox/streets-v11",
+            center: [27, 53],
+            zoom: 6,
+        });
+        geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+        });
+        map.addControl(
+            geocoder,
+            'top-right'
+        );
+
+        geocoder.on('result', (results) => (
+            setAddress(results.result.place_name),
+                setCoord(results.result.center)
+        ))
+    }, []);
 
     // function postData(data) {
     //   axios
@@ -321,7 +353,15 @@ function ForOrganization(props) {
                   /> */}
                             </td>
                         </tr>
-                        <Map/>
+                        <div>
+                            <div
+                                id="map"
+                                ref={mapContainer}
+                                className="map-container"
+                                style={{width: "100%", height: "80hv", marginLeft: "400px"}}
+                            />
+                            <div id="geocoder" className="geocoder"/>
+                        </div>
                         <div>
                             <p className="title">Данные по контактному лицу</p>
                         </div>
@@ -425,7 +465,7 @@ function ForOrganization(props) {
                     </table>
                 </form>
 
-                <button
+                <div
                     className="RegisterBtn"
                     type="submit"
                     name="confirmPass"
@@ -435,7 +475,7 @@ function ForOrganization(props) {
                         patronymic, position, phone_number, coord))}
                 >
                     Дальше
-                </button>
+                </div>
             </div>
         </div>
     );

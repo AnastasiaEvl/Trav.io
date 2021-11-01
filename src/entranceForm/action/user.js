@@ -15,19 +15,19 @@ export const registration = (email, password, organizationalLegalForm, organizat
         try {
             console.log("try");
             const response = await axios.post(`http://127.0.0.1:5000/logged_in_two`, {
-                "email":  email ,
-              "password": password ,
-               "organizational_legal_form": organizationalLegalForm,
-               "organization_name": organizationName,
+                "email": email,
+                "password": password,
+                "organizational_legal_form": organizationalLegalForm,
+                "organization_name": organizationName,
                 "field_of_activity": fieldOfActivity,
-               "unp": unp,
-            //    "address": address,
-               "last_name": last_name,
-               "first_name": first_name,
-             "patronymic": patronymic,
-                  "position": position,
-             "phone_number": phone_number,
-            "coord" : coord,
+                "unp": unp,
+                //    "address": address,
+                "last_name": last_name,
+                "first_name": first_name,
+                "patronymic": patronymic,
+                "position": position,
+                "phone_number": phone_number,
+                "coord": coord,
             })
             console.log("I registered" + response);
             dispatch(setUser(response.data.user))
@@ -47,7 +47,7 @@ export const auth = (email, password) => {
                 "password": password,
             })
             console.log(response)
-            const decodedToken = jwt_decode( response.data.access_token)
+            const decodedToken = jwt_decode(response.data.access_token)
             console.log(decodedToken)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.access_token)
@@ -55,7 +55,6 @@ export const auth = (email, password) => {
             return <Redirect to="main"/>;
         } catch (e) {
             console.log("token not given")
-           
         }
     }
 }
