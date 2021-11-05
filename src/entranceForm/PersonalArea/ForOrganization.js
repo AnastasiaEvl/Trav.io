@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./PersonalAreaStyle.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import "mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import {registration} from "../action/user";
 import {useDispatch} from "react-redux";
 import mapboxgl from "mapbox-gl";
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import MapboxGeocoder from "mapbox-gl-geocoder";
 
 mapboxgl.accessToken =
     "pk.eyJ1IjoiYW5hc3Rhc2lhZXZsIiwiYSI6ImNrdjVidTg5aDBrNTcycW9rZjJrYjZyYXYifQ.cc8dzHKC47e0M31mSwAi9g";
