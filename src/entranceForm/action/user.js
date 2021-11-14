@@ -14,7 +14,7 @@ export const registration = (email, password, organizationalLegalForm, organizat
     return async dispatch => {
         try {
             console.log("try");
-            const response = await axios.post(`http://127.0.0.1:5000/logged_in_two`, {
+            const response = await axios.post(`https://travi0.herokuapp.com/logged_in_one`, {
                 "email": email,
                 "password": password,
                 "organizational_legal_form": organizationalLegalForm,
@@ -42,7 +42,7 @@ export const registration = (email, password, organizationalLegalForm, organizat
 export const auth = (email, password) => {
     return async dispatch => {
         try {
-            const response = await axios.post(`http://127.0.0.1:5000/login`, {
+            const response = await axios.post(`https://travi0.herokuapp.com/login`, {
                 "email": email,
                 "password": password,
             })
@@ -66,7 +66,7 @@ export const logout = () => {
 export const sendToken = () => {
     return async dispatch => {
         try {
-            const response = await axios.get(`http://localhost:3001/auth`,
+            const response = await axios.get(`https://travi0.herokuapp.com/auth`,
                 {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
