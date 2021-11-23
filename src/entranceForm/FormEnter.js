@@ -24,6 +24,7 @@ function FormEnter(props) {
     const [confirmPassword, setConfirmPassword] = useState();
     const [emptyEmail, setEmptyEmail] = useState(false);
     const [emptyPassword, setEmptyPassword] = useState(false);
+    const [isExist, setExist] = useState(false);
     const [emptyConfirmPassword, setEmptyConfirmPassword] = useState(false);
     const [errorEmail, setErrorEmail] = useState("Введите e-mail");
     const [errorPassword, setErrorPasword] = useState("Введите пароль");
@@ -36,7 +37,7 @@ function FormEnter(props) {
     const [errorTextPassword, setErrorTextPassword] = useState();
 
     function buttonChange() {
-        if (errorPassword || errorEmail || !checked) {
+        if (errorPassword || errorEmail || !checked || isExist) {
             return false;
         } else {
             let but = document.getElementById('btn_first')
@@ -158,16 +159,17 @@ function FormEnter(props) {
 
     function cheackEmail(data) {
         axios
-            .post("http://cabe-134-17-6-60.ngrok.io/logged_in_one", {
+            .post("https://travi0.herokuapp.com/logged_in_one", {
                 email: email,
             })
-            .then((email) => {
-                if (data.email === email) {
-                   let m = alert("Пользователь с таким именем существует");
+            .then((response) => {
+                console.log(response.data.message)
+                if (response.data.message === email) {
+                   alert("Свободен")
                 } else {
-                    alert("ОК");
+                    setExist(true);
+                    alert("Занят");
                 }
-                console.log("Ok");
             })
             .catch((data) => console.log("error"));
     }

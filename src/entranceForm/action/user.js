@@ -14,14 +14,14 @@ export const registration = (email, password, organizationalLegalForm, organizat
     return async dispatch => {
         try {
             console.log("try");
-            const response = await axios.post(`https://travi0.herokuapp.com/logged_in_one`, {
+            const response = await axios.post(`https://travi0.herokuapp.com/logged_in_two`, {
                 "email": email,
                 "password": password,
                 "organizational_legal_form": organizationalLegalForm,
                 "organization_name": organizationName,
                 "field_of_activity": fieldOfActivity,
                 "unp": unp,
-                //    "address": address,
+                   "address": "address",
                 "last_name": last_name,
                 "first_name": first_name,
                 "patronymic": patronymic,
