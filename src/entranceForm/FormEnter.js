@@ -241,7 +241,7 @@ function FormEnter(props) {
                                             onMouseDown={handleMouseDownPasswordOne}
                                             edge="end"
                                         >
-                                            {values.showPassword ? <VisibilityOff/> : <Visibility/>}
+                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
                                         </IconButton>
                                     </InputAdornment>
                                 }
@@ -279,7 +279,7 @@ function FormEnter(props) {
                                             onMouseDown={handleMouseDownPassword}
                                             edge="end"
                                         >
-                                            {values.showConfirmPassword ? <VisibilityOff/> : <Visibility/>}
+                                            {values.showConfirmPassword ? <Visibility/> : <VisibilityOff/>}
                                         </IconButton>
                                     </InputAdornment>
                                 }
