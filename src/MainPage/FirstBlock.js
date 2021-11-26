@@ -57,7 +57,7 @@ function FirstBlock() {
             <div className="about">О проекте</div>{" "}
           </a>
           <a href="#">
-            <div className="list">Список переработчиков</div>{" "}
+            <div className="about" >Список переработчиков</div>{" "}
           </a>
           <a href="#">
             {" "}
@@ -78,7 +78,7 @@ function FirstBlock() {
             <div className="contacts">Контакты</div>{" "}
           </a>
           <div className="img">
-            <Form />
+
           </div>
         </div>
         <div className="text1">
